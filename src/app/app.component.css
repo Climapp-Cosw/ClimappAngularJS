@@ -1,0 +1,13 @@
+#idNav {
+    background-color:rgb(26, 90, 145) !important;
+}
+
+.nav-item{
+    color:rgb(212, 241, 255) !important;
+}
+
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}

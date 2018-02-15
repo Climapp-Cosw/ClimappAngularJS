@@ -1,0 +1,17 @@
+img {
+    max-width: 50%;
+    max-height: 50%;
+    height: 50%;
+    width: 25% !important;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.btnInit{
+    width: 30%;
+    height: 110%;
+}
