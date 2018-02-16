@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
         this.usersService.login(
             this.signInForm.get('email').value,
             this.signInForm.get('password').value).subscribe(loginResponse => {
-            this.router.navigate(['home']);
+                this.router.navigate(['home']);
         }, error => {
             this.loginError = 'Error Signing in: ' + (error && error.message ? error.message : '');
         })
