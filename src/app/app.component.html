@@ -7,19 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <a class="navbar-brand" href="#">ClimApp</a>
-            <li class="nav-item">
+            <li *ngIf="isLoggedIn()" class="nav-item">
                 <a class="nav-link" routerLinkActive="/" routerLink="/">Home</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="isLoggedIn()" class="nav-item">
                 <a class="nav-link">Profile</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="isLoggedIn()" class="nav-item">
                 <a class="nav-link">Zones</a>
             </li>
         </ul>
         <ul  class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-                <a href="#" class="nav-link">(Sign Out)</a>
+            <li *ngIf="isLoggedIn()" class="nav-item">
+                <a href="#" class="nav-link" (click)="signOut()">(Sign Out)</a>
             </li>
         </ul>
     </div>

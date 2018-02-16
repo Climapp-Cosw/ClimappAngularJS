@@ -1,0 +1,26 @@
+<div class="container">
+
+    <form [formGroup]="signInForm" (ngSubmit)="doLogin()" novalidate>
+        <div class="row">
+            <div class="col-md-3"><img class="img-responsive" src="http://ecofundacioncolombia.org/images/Logoo.png" alt="Logo"></div>
+            <div class="col-md-6"> 
+                <h1 id="titulo" align="center">Sign-In</h1>
+                <br><br>
+                <div class="form-group" >
+                    <label for="lastname" class="center label">Email</label>
+                    <input type="email" class="form-control textField center" id="email" formControlName="email" required="">
+                </div>
+                <div class="form-group" >
+                    <label for="image" class="center label">Password</label>
+                    <input type="password" class="form-control textField center" id="password" formControlName="password" required="">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-info btn-block btnInit center" [disabled]="!signInForm.valid">Sign In</button>
+                <button type="button" class="btn btn-info btn-block btnInit center" (click)="routeToHome()">Home</button>
+                <p class="text-danger mt-1" *ngIf="loginError">{{loginError}}</p>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </form>
+</div>
+
