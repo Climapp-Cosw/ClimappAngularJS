@@ -14,8 +14,8 @@ export class UserService extends APIService{
         super(config, authService, http);
     }
 
-    registerUser(name: string, email: string, image: string, password: string){
-        return this.post('user', { name, email, image, password }).map(loginResponse => {
+    registerUser(name: string, email: string, image: string, password: string, confirmPassword: string){
+        return this.post('users/', { name, email, image, password, confirmPassword }).map(loginResponse => {
             if (loginResponse) {
              
             }
@@ -24,8 +24,8 @@ export class UserService extends APIService{
     updateUser(){}
     deleteUser(){}
     
-    login(username: string, password: string) {
-        return this.post('user/login', { username, password }, { credentials: false }).map(loginResponse => {
+    login(email: string, password: string) {
+        return this.post('users/login', { email, password }, { credentials: false }).map(loginResponse => {
             if (loginResponse) {
                 this.authService.accessToken = loginResponse.accessToken;
             }
