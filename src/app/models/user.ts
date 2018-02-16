@@ -1,6 +1,6 @@
 export class User{
   private name: string;
-  private email string;
+  private email: string;
   private image: string;
   private password: string;
 

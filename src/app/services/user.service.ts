@@ -26,8 +26,9 @@ export class UserService extends APIService{
     
     login(username: string, password: string) {
         return this.post('user/login', { username, password }, { credentials: false }).map(loginResponse => {
-        if (loginResponse) {
-            this.authService.accessToken = loginResponse.accessToken;
-        }
-    });
+            if (loginResponse) {
+                this.authService.accessToken = loginResponse.accessToken;
+            }
+        });
+    }
 }
