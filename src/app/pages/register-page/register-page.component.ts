@@ -16,7 +16,7 @@ export class RegisterPageComponent implements OnInit {
     constructor(public userService: UserService, public formBuilder: FormBuilder, public router: Router) {
 
     }
-  
+
     ngOnInit() {
         this.userForm = this.formBuilder.group({
             name: '',
@@ -26,13 +26,13 @@ export class RegisterPageComponent implements OnInit {
             confirmPassword: ''
         });
     }
-  
+
     routeToHome(){
         this.router.navigate(['/']);
     }
-    
+
     onSubmit() {
-        this.userService. registerUser(
+        this.userService.registerUser(
             this.userForm.get('name').value,
             this.userForm.get('email').value,
             this.userForm.get('image').value,

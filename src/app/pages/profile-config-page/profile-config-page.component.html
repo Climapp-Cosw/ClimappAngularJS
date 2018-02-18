@@ -1,39 +1,70 @@
-<div class="container">
-  <h1 id="titulo" align="center">Profile</h1>
+<div class="container-fluid" id="" >
+
   <div class="row">
-    <div class="row">
-      <img class="img-responsive" src="http://ecofundacioncolombia.org/images/Logoo.png" alt="Logo">
+    <div class="col-3">
+
+      <img width="200" height="200" class="img-responsive center" src="http://ecofundacioncolombia.org/images/Logoo.png" alt="Logo">
+
     </div>
+    <div class="col-6">
+      <h1 id="titulo" align="center">Profile</h1>
+      <br>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+        <br>
 
-    <div class="col">
+        <div class="row " *ngIf="!isEditable()">
+
+          <div class="col justify-content-center" >
+
+            <label for="name">Name: </label>
+            <p>{{user.name}}</p>
+
+            <label for="email">Email: </label>
+            <p>{{user.email}}</p>
+            <div class="row justify-content-end" >
+              <div class="col" >
+                <br>
+                <button  type="submit" class="btn btn-info btn-block btnInit  " (click)="edit()">Edit profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isEditable()" class="row">
+          <label for="name">Name: </label>
+          <input type="text" class="form-control" id="name" formControlName="name" [placeholder]="user.name">
+
+          <label for="email">Email: </label>
+          <input  type="text" class="form-control" id="email" formControlName="email"  [placeholder]="user.email" >
+
+          <label for="paswd">New password: </label>
+          <input   type="password" class="form-control" id="paswd" formControlName="paswd" [placeholder]="user.password">
+          <br>
+
+          <!-- Image file-->
+          <!--img id="imgn" width="300" height="300" src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-3/512/user-512.png"  alt="ProfilePicture">
+
+          <div class="custom-file col-9" >
+            <label class="custom-file-label " for="img">Select your picture</label>
+            <input class="form-control" formControlName="img" type="file" class="custom-file-input" id="img">
+
+          </div>
+          <div-- class="col-3">
+            <button  type="submit" class="btn btn-info btn-block btnInit " (click)="saveConfig()">Save</button>
+          </div-->
+          <div class="col-9">
+            <label for="image" class="center label">Picture link</label>
+            <input type="text" class="form-control textField center" id="image" formControlName="image">
+          </div>
+          <button  type="submit" class="btn btn-info btn-block btnInit col-3 " (click)="saveConfig()">Save</button>
 
 
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="!isEditable()" class="col-3">
 
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" formControlName="name" placeholder="your name...">
+        <img class="img-responsive" width="300" height="300" id="imguser"  src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-3/512/user-512.png"  alt="ProfilePicture">
 
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" formControlName="email" placeholder="Example@mail.com">
-      </div>
-
-      <div class="form-group">
-        <button id="newpassw" type="submit" class="btn btn-success">Change Password</button>
-      </div>
-
-      <button type="submit" class="btn btn-success">Save</button>
-    </form>
+    </div>
   </div>
-
-    <div class="row">
-
-      <div class="form-group">
-        <label class="center label">Your Level</label>
-      </div>
-    </div>
-
 </div>

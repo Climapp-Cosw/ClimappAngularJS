@@ -3,15 +3,15 @@
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>-->
-    
+
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <a class="navbar-brand" href="#">ClimApp</a>
             <li *ngIf="isLoggedIn()" class="nav-item">
                 <a class="nav-link" routerLinkActive="/" routerLink="/">Home</a>
             </li>
-            <li *ngIf="isLoggedIn()" class="nav-item">
-                <a class="nav-link">Profile</a>
+            <li  class="nav-item">
+                <a class="nav-link" routerLinkActive="/profileConfig" routerLink="/profileConfig">Profile</a>
             </li>
             <li *ngIf="isLoggedIn()" class="nav-item">
                 <a class="nav-link">Zones</a>

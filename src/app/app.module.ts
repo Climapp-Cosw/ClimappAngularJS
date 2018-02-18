@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-config-page.component';
 
 import { UserService } from './services/user.service';
 
@@ -23,13 +24,16 @@ const ROUTES = [
 {path: '', component: HomePageComponent},
 {path: 'login', component: LoginPageComponent},
 {path: 'register', component: RegisterPageComponent},
+{path: 'profileConfig', component: ProfileConfigPageComponent},
 ]
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ProfileConfigPageComponent
+
   ],
   imports: [
     BrowserModule,

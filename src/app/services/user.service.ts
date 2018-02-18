@@ -17,13 +17,19 @@ export class UserService extends APIService{
     registerUser(name: string, email: string, image: string, password: string){
         return this.post('user', { name, email, image, password }).map(loginResponse => {
             if (loginResponse) {
-             
+
             }
         });
     }
-    updateUser(){}
+    updateUser(name: string, email: string, image: string, password: string){
+        return this.post('user/updateprofile', { name, email, image, password }).map(updateResponse => {
+            if (updateResponse) {
+
+            }
+        });
+    }
     deleteUser(){}
-    
+
     login(username: string, password: string) {
         return this.post('user/login', { username, password }, { credentials: false }).map(loginResponse => {
             if (loginResponse) {
