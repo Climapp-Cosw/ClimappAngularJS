@@ -31,13 +31,13 @@
         </div>
         <div *ngIf="isEditable()" class="row">
           <label for="nameedit">Name: </label>
-          <input type="text" [value]="user.name" class="form-control" id="nameedit" formControlName="nameedit" required>
+          <input type="text" [(ngModel)]="user.name" class="form-control" id="nameedit" formControlName="nameedit" required>
 
           <label for="emailedit">Email: </label>
-          <input  type="email" [value]="user.email" class="form-control" id="emailedit" formControlName="emailedit"  required>
+          <input  type="email" [(ngModel)]="user.email" class="form-control" id="emailedit" formControlName="emailedit"  required>
 
           <label for="paswd">New password: </label>
-          <input   type="password" [value]="user.password" class="form-control" id="paswd" formControlName="paswd" required>
+          <input   type="password" [(ngModel)]="user.password" class="form-control" id="paswd" formControlName="paswd" required>
           <br>
 
           <!-- Image file-->
@@ -53,9 +53,9 @@
           </div-->
           <div class="col-9">
             <label for="image" class="center label">Picture link</label>
-            <input type="text" class="form-control textField center" id="image" formControlName="image" required>
+            <input type="text" [(ngModel)]="user.image" class="form-control textField center" id="image" formControlName="image" required>
           </div>
-          <button  type="submit" [value]="user.image" class="btn btn-info btn-block btnInit col-3 " (click)="saveConfig()">Save</button>
+          <button  type="submit"  class="btn btn-info btn-block btnInit col-3 " (click)="saveConfig()">Save</button>
 
 
         </div>
