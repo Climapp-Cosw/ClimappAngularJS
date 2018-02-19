@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import {UserService}from '../../services/user.service';
+import { UserService }from '../../services/user.service';
 
 @Component({
   selector: 'app-register-page',
@@ -11,8 +11,8 @@ import {UserService}from '../../services/user.service';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
-    private userForm: FormGroup;
-
+    public userForm: FormGroup;
+    public error : string;
     constructor(public userService: UserService, public formBuilder: FormBuilder, public router: Router) {
 
     }
@@ -36,10 +36,12 @@ export class RegisterPageComponent implements OnInit {
             this.userForm.get('name').value,
             this.userForm.get('email').value,
             this.userForm.get('image').value,
-            this.userForm.get('password').value
+            this.userForm.get('password').value,
+            this.userForm.get('confirmPassword').value
         ).subscribe(serverResponse=>{
-            this.router.navigate(['/home']);
+            this.router.navigate(['/profile']);
         }, error=>{
+            this.error = 'Error Sign-up user in: ' + (error && error.message ? error.message : '');
             console.log(error);
         });
   }

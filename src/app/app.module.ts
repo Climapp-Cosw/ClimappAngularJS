@@ -24,7 +24,7 @@ const ROUTES = [
 {path: '', component: HomePageComponent},
 {path: 'login', component: LoginPageComponent},
 {path: 'register', component: RegisterPageComponent},
-{path: 'profileConfig', component: ProfileConfigPageComponent},
+{path: 'profile', component: ProfileConfigPageComponent,canActivate: [AuthService]},
 ]
 @NgModule({
   declarations: [

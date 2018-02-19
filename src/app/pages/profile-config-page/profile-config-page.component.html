@@ -9,18 +9,18 @@
     <div class="col-6">
       <h1 id="titulo" align="center">Profile</h1>
       <br>
-      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="profileForm"  novalidate>
         <br>
 
         <div class="row " *ngIf="!isEditable()">
 
           <div class="col justify-content-center" >
 
-            <label for="name">Name: </label>
-            <p>{{user.name}}</p>
+            <label for="name2">Name: </label>
+            <p id="name2">{{user.name}}</p>
 
-            <label for="email">Email: </label>
-            <p>{{user.email}}</p>
+            <label for="email2">Email: </label>
+            <p id="email2">{{user.email}}</p>
             <div class="row justify-content-end" >
               <div class="col" >
                 <br>
@@ -30,14 +30,14 @@
           </div>
         </div>
         <div *ngIf="isEditable()" class="row">
-          <label for="name">Name: </label>
-          <input type="text" class="form-control" id="name" formControlName="name" [placeholder]="user.name">
+          <label for="nameedit">Name: </label>
+          <input type="text" [value]="user.name" class="form-control" id="nameedit" formControlName="nameedit" required>
 
-          <label for="email">Email: </label>
-          <input  type="text" class="form-control" id="email" formControlName="email"  [placeholder]="user.email" >
+          <label for="emailedit">Email: </label>
+          <input  type="email" [value]="user.email" class="form-control" id="emailedit" formControlName="emailedit"  required>
 
           <label for="paswd">New password: </label>
-          <input   type="password" class="form-control" id="paswd" formControlName="paswd" [placeholder]="user.password">
+          <input   type="password" [value]="user.password" class="form-control" id="paswd" formControlName="paswd" required>
           <br>
 
           <!-- Image file-->
@@ -53,9 +53,9 @@
           </div-->
           <div class="col-9">
             <label for="image" class="center label">Picture link</label>
-            <input type="text" class="form-control textField center" id="image" formControlName="image">
+            <input type="text" class="form-control textField center" id="image" formControlName="image" required>
           </div>
-          <button  type="submit" class="btn btn-info btn-block btnInit col-3 " (click)="saveConfig()">Save</button>
+          <button  type="submit" [value]="user.image" class="btn btn-info btn-block btnInit col-3 " (click)="saveConfig()">Save</button>
 
 
         </div>
@@ -63,7 +63,7 @@
     </div>
     <div *ngIf="!isEditable()" class="col-3">
 
-        <img class="img-responsive" width="300" height="300" id="imguser"  src="https://cdn3.iconfinder.com/data/icons/gray-toolbar-3/512/user-512.png"  alt="ProfilePicture">
+        <img class="img-responsive" width="300" height="300" id="imguser"  [src]="user.image"  alt="ProfilePicture">
 
     </div>
   </div>

@@ -14,27 +14,27 @@ export class LoginPageComponent implements OnInit {
     public loginError : string;
     public signInForm: FormGroup;
     public authService: AuthService;
-    
+
     constructor(public formBuilder: FormBuilder, public router: Router, public usersService: UserService) {
 
     }
-    
+
     ngOnInit() {
         this.signInForm = this.formBuilder.group({
             email: '',
             password: ''
     });
     }
-  
+
     routeToHome(){
         this.router.navigate(['/']);
     }
-    
+
     doLogin() {
         this.usersService.login(
             this.signInForm.get('email').value,
             this.signInForm.get('password').value).subscribe(loginResponse => {
-            this.router.navigate(['home']);
+                this.router.navigate(['/profile']);
         }, error => {
             this.loginError = 'Error Signing in: ' + (error && error.message ? error.message : '');
         })
