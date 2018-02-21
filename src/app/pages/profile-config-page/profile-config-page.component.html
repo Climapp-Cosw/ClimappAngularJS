@@ -59,9 +59,9 @@
 
 
           <div class="col">
-            <button type="button" class="btn btn-info btn-block btnInit center col-3" (click)="routeToProfile()">Profile</button>
+            <button type="button" class="btn btn-info btn-block btnInit center " (click)="routeToProfile()">Profile</button>
 
-            <button  type="submit"  class="btn btn-info btn-block btnInit center col-3 " [disabled]="!userForm.valid" (click)="saveConfig()">Save</button>
+            <button  type="submit"  class="btn btn-info btn-block btnInit center " [disabled]="!userForm.valid" (click)="saveConfig()">Save</button>
             <p class="text-danger mt-1" *ngIf="profileError">{{profileError}}</p>
           </div>
 
