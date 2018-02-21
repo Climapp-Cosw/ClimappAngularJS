@@ -11,6 +11,9 @@ import { User } from './models/user';
 })
 export class AppComponent {
   title = 'app';
+  lat: number =  4.6097100;
+  lng: number = -74.0817500;
+  
     
   
     constructor(
