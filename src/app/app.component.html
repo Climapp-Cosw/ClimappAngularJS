@@ -13,8 +13,10 @@
             <li  class="nav-item">
                 <a class="nav-link" *ngIf="isLoggedIn()" routerLinkActive="/profile" routerLink="/profile">Profile</a>
             </li>
-            <li *ngIf="isLoggedIn()" class="nav-item">
-                <a class="nav-link">Zones</a>
+          <!-- *ngIf="isLoggedIn()" -->
+            <li  class="nav-item">
+              <!--Aca va el hipervinculo a zonas-->
+                <a class="nav-link" routerLinkActive="/zones" routerLink="/zones">Zones</a>
             </li>
         </ul>
         <ul  class="nav navbar-nav navbar-right">

@@ -9,8 +9,10 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-config-page.component';
+import { ZonesPageComponent} from './pages/zones-page/zones-page.components';
 
 import { UserService } from './services/user.service';
+
 
 import { AppConfiguration } from './common/config/app-configuration.service';
 import { INITIAL_CONFIG } from './common/config/initial-config';
@@ -25,6 +27,7 @@ const ROUTES = [
 {path: 'login', component: LoginPageComponent},
 {path: 'register', component: RegisterPageComponent},
 {path: 'profile', component: ProfileConfigPageComponent,canActivate: [AuthService]},
+{path: 'zones', component: ZonesPageComponent},
 ]
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ const ROUTES = [
     HomePageComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ProfileConfigPageComponent
+    ProfileConfigPageComponent,
+    ZonesPageComponent
 
   ],
   imports: [
