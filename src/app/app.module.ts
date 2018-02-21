@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
-import {ReactiveFormsModule}from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
@@ -11,6 +11,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-config-page.component';
 
 import { UserService } from './services/user.service';
+import { ReportService } from './services/report.service';
 
 import { AppConfiguration } from './common/config/app-configuration.service';
 import { INITIAL_CONFIG } from './common/config/initial-config';
@@ -24,7 +25,7 @@ const ROUTES = [
 {path: '', component: HomePageComponent},
 {path: 'login', component: LoginPageComponent},
 {path: 'register', component: RegisterPageComponent},
-{path: 'profile', component: ProfileConfigPageComponent,canActivate: [AuthService]},
+{path: 'profile', component: ProfileConfigPageComponent, canActivate: [AuthService]},
 ]
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ const ROUTES = [
         }
     },
     UserService,
+    ReportService,
     AppConfiguration,
     AppDataService,
     APIService,

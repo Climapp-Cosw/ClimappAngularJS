@@ -11,7 +11,7 @@ import { User } from '../../models/user';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-    public loginError : string;
+    public loginError: string;
     public signInForm: FormGroup;
     public authService: AuthService;
 
@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit {
                 this.router.navigate(['/profile']);
         }, error => {
             this.loginError = 'Error Signing in: ' + (error && error.message ? error.message : '');
-        })
+        });
     }
 
 }

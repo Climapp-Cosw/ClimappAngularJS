@@ -12,7 +12,7 @@ import { UserService }from '../../services/user.service';
 })
 export class RegisterPageComponent implements OnInit {
     public userForm: FormGroup;
-    public error : string;
+    public error: string;
     constructor(public userService: UserService, public formBuilder: FormBuilder, public router: Router) {
 
     }
@@ -38,9 +38,9 @@ export class RegisterPageComponent implements OnInit {
             this.userForm.get('image').value,
             this.userForm.get('password').value,
             this.userForm.get('confirmPassword').value
-        ).subscribe(serverResponse=>{
-            this.router.navigate(['/profile']);
-        }, error=>{
+        ).subscribe(serverResponse => {
+            this.router.navigate(['/login']);
+        }, error => {
             this.error = 'Error Sign-up user in: ' + (error && error.message ? error.message : '');
             console.log(error);
         });

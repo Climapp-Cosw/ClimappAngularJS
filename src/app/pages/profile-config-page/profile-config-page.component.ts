@@ -1,6 +1,6 @@
-import{Component , OnInit}from '@angular/core';
-import {Router}from '@angular/router';
-import {UserService}from '../../services/user.service';
+import {Component , OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -12,48 +12,51 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ProfileConfigPageComponent implements OnInit{
     public editable: boolean;
     public profileForm: FormGroup;
-    public user: User;
+    public profileError: string;
+    public username: '';
+    public useremail: '';
+    public userimage: '';
+    public userpass: '';
     constructor(public userService: UserService, public formBuilder: FormBuilder, public router: Router) {
-        this.userService.getUEmail().subscribe(serverResponse=>{
-            this.user=serverResponse;
+
+        this.userService.getUEmail().subscribe(serverResponse => {
+            this.username = serverResponse.name;
+            this.useremail = serverResponse.email;
+            this.userimage = serverResponse.image;
+            this.userpass = serverResponse.password;
         });
     }
 
     ngOnInit() {
-        this.userService.getUEmail().subscribe(serverResponse=>{
-            this.user=serverResponse;
-        });
         this.profileForm = this.formBuilder.group({
-            nameedit : '',
-            emailedit : '',
-            image : '',
-            paswd : '',
+            name: '',
+            email: '',
+            image: '',
+            password: '',
         });
     }
 
     isEditable() {
       return this.editable;
     }
-
-    saveConfig(){
-      this.editable=false;
+    routeToProfile () {
+      this.editable = false;
+      this.router.navigate(['/profile']);
+    }
+    saveConfig() {
       this.userService.updateUser(
-            this.profileForm.get('nameedit').value,
-            this.profileForm.get('emailedit').value,
+            this.profileForm.get('name').value,
+            this.profileForm.get('email').value,
             this.profileForm.get('image').value,
-            this.profileForm.get('paswd').value,
-
-        ).subscribe(serverResponse=>{
-            this.userService.setEmail(this.profileForm.get('emailedit').value)
-
-            this.router.navigate(['/profile']);
-
-        }, error=>{
-            console.log(error);
+            this.profileForm.get('password').value,
+        ).subscribe(serverResponse => {
+            this.userService.emailuser = this.profileForm.get('email').value;
+        }, error => {
+            this.profileError = (error && error.message ? error.message : '');
         });
     }
-    edit(){
-      this.editable=true;
+    edit() {
+      this.editable = true;
     }
 
 

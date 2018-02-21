@@ -1,15 +1,58 @@
-export class User{
-    private name: string;
-    private email: string;
-    private image: string;
-    private password: string;
-    private confirmPassword: string;
+import {Report} from './report';
+
+export class User {
+    private _name: string;
+    private _email: string;
+    private _image: string;
+    private _password: string;
+    private _confirmPassword: string;
+    private  _reports: Report [] = [];
 
     constructor(name: string, email: string, image: string,  password: string, confirmPassword: string) {
-        this.name = name;
-        this.email = email;
-        this.image = image;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
+        this._name = name;
+        this._email = email;
+        this._image = image;
+        this._password = password;
+        this._confirmPassword = confirmPassword;
     }
+
+
+    get name(): string {
+      return this._name;
+    }
+    set name(value: string) {
+      this._name = value;
+    }
+    get email(): string {
+      return this._email;
+    }
+    set email(value: string) {
+      this._email = value;
+    }
+    get image(): string {
+      return this._image;
+    }
+    set image(value: string) {
+      this._image = value;
+    }
+    get password(): string {
+      return this._password;
+    }
+    set password(value: string) {
+      this._password = value;
+    }
+    get confirmPassword(): string {
+      return this._confirmPassword;
+    }
+    set confirmPassword(value: string) {
+      this._confirmPassword = value;
+    }
+
+  get reports(): any {
+    return this._reports;
+  }
+
+  set reports(value: any) {
+    this._reports = value;
+  }
 }
