@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@amg/core';
+import { AgmCoreModule} from "@agm/core";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -10,7 +10,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-config-page.component';
-import { PuclicWeatherPageComponent } from './pages/puclicWeather-page/puclicWeather-page.component';
+import { PublicWeatherPageComponent } from './pages/publicWeather-page/publicWeather-page.component';
 
 import { UserService } from './services/user.service';
 import { ReportService } from './services/report.service';
@@ -29,7 +29,7 @@ const ROUTES = [
 {path: '', component: HomePageComponent},
 {path: 'login', component: LoginPageComponent},
 {path: 'register', component: RegisterPageComponent},
-{path: 'publicweather', component: PuclicWeatherPageComponent},
+{path: 'publicweather', component: PublicWeatherPageComponent,canActivate: [AuthService]},
 {path: 'profile', component: ProfileConfigPageComponent,canActivate: [AuthService]},
 
 ]
@@ -40,7 +40,8 @@ const ROUTES = [
     LoginPageComponent,
     RegisterPageComponent,
     ProfileConfigPageComponent,
-    PuclicWeatherPageComponent
+    PublicWeatherPageComponent,
+
 
   ],
   imports: [
@@ -65,7 +66,7 @@ const ROUTES = [
     AppConfiguration,
     AppDataService,
     APIService,
-    AuthService
+    AuthService,
 ],
   bootstrap: [AppComponent]
 })
