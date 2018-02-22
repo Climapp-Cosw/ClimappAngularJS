@@ -13,6 +13,7 @@ import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-
 import { PuclicWeatherPageComponent } from './pages/puclicWeather-page/puclicWeather-page.component';
 
 import { UserService } from './services/user.service';
+import { ZoneService } from './services/zone.service';
 
 import { AppConfiguration } from './common/config/app-configuration.service';
 import { INITIAL_CONFIG } from './common/config/initial-config';
@@ -30,6 +31,7 @@ const ROUTES = [
 {path: 'register', component: RegisterPageComponent},
 {path: 'publicweather', component: PuclicWeatherPageComponent},
 {path: 'profile', component: ProfileConfigPageComponent,canActivate: [AuthService]},
+{path: 'zones', component: ZonesPageComponent},
 ]
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ const ROUTES = [
     LoginPageComponent,
     RegisterPageComponent,
     ProfileConfigPageComponent,
-    PuclicWeatherPageComponent
+    PuclicWeatherPageComponent,
+    ZonesPageComponent
 
   ],
   imports: [
@@ -62,7 +65,8 @@ const ROUTES = [
     AppConfiguration,
     AppDataService,
     APIService,
-    AuthService
+    AuthService,
+    ZoneService
 ],
   bootstrap: [AppComponent]
 })
