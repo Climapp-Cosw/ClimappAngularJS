@@ -18,13 +18,7 @@ export class ProfileConfigPageComponent implements OnInit{
     public userimage: '';
     public userpass: '';
     constructor(public userService: UserService, public formBuilder: FormBuilder, public router: Router) {
-
-        this.userService.getUEmail().subscribe(serverResponse => {
-            this.username = serverResponse.name;
-            this.useremail = serverResponse.email;
-            this.userimage = serverResponse.image;
-            this.userpass = serverResponse.password;
-        });
+        this.userGet();
     }
 
     ngOnInit() {
@@ -40,8 +34,22 @@ export class ProfileConfigPageComponent implements OnInit{
       return this.editable;
     }
     routeToProfile () {
+      this.userGet();
+
+    }
+    routeToHome () {
       this.editable = false;
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/']);
+    }
+
+    private userGet(){
+      this.editable = false;
+      this.userService.getUEmail().subscribe(serverResponse => {
+        this.username = serverResponse.name;
+        this.useremail = serverResponse.email;
+        this.userimage = serverResponse.image;
+        this.userpass = serverResponse.password;
+      });
     }
     saveConfig() {
       this.userService.updateUser(
