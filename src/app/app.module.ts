@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AgmCoreModule } from '@amg/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -9,6 +10,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-config-page.component';
+import { PuclicWeatherPageComponent } from './pages/puclicWeather-page/puclicWeather-page.component';
 
 import { UserService } from './services/user.service';
 import { ReportService } from './services/report.service';
@@ -21,11 +23,15 @@ import { AppDataService } from './common/app-data.service';
 import { APIService } from './common/api.service';
 import { AuthService } from './common/auth.service';
 
+
+
 const ROUTES = [
 {path: '', component: HomePageComponent},
 {path: 'login', component: LoginPageComponent},
 {path: 'register', component: RegisterPageComponent},
-{path: 'profile', component: ProfileConfigPageComponent},
+{path: 'publicweather', component: PuclicWeatherPageComponent},
+{path: 'profile', component: ProfileConfigPageComponent,canActivate: [AuthService]},
+
 ]
 @NgModule({
   declarations: [
@@ -33,7 +39,8 @@ const ROUTES = [
     HomePageComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ProfileConfigPageComponent
+    ProfileConfigPageComponent,
+    PuclicWeatherPageComponent
 
   ],
   imports: [
@@ -41,7 +48,10 @@ const ROUTES = [
     NgbModule.forRoot(),
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
-    HttpModule
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD6yCprhpqUqKmDwQcn6rWOc_TIk3s60-c'
+    })
   ],
   providers: [
     {
