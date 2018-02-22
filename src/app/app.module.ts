@@ -12,7 +12,7 @@ import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-
 import { ZonesPageComponent} from './pages/zones-page/zones-page.components';
 
 import { UserService } from './services/user.service';
-
+import { ZoneService } from './services/zone.service';
 
 import { AppConfiguration } from './common/config/app-configuration.service';
 import { INITIAL_CONFIG } from './common/config/initial-config';
@@ -57,7 +57,8 @@ const ROUTES = [
     AppConfiguration,
     AppDataService,
     APIService,
-    AuthService
+    AuthService,
+    ZoneService
 ],
   bootstrap: [AppComponent]
 })
