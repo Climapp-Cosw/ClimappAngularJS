@@ -4,14 +4,12 @@ import { APIService } from '../common/api.service';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppConfiguration } from '../common/config/app-configuration.service';
 import { AuthService } from '../common/auth.service';
-import {CacheService} from "ng2-cache/src/services/cache.service";
-import {User} from "../models/user";
-import {Observable} from "rxjs/Observable";
+import {User} from '../models/user';
 
 @Injectable()
 export class UserService extends APIService {
-    public cacheUser;
-    constructor(public  cacheService: CacheService,public config: AppConfiguration, public http: Http, public authService: AuthService) {
+    public cacheUser: User;
+    constructor(public config: AppConfiguration, public http: Http, public authService: AuthService) {
         super(config, authService, http);
     }
 
@@ -23,7 +21,7 @@ export class UserService extends APIService {
         });
     }
     updateUser(name: string, email: string, image: string, password: string) {
-      return this.post('users/updateprofile/' +this.cacheService.get("user").email(), { name: name, email: email,
+      return this.post('users/updateprofile/' + this.cacheUser.id, { id: this.cacheUser.id, name: name, email: email,
         image: image, password: password, confirmPassword: password}).map(updateResponse => {
             if (updateResponse) {
 
@@ -31,19 +29,23 @@ export class UserService extends APIService {
         });
     }
     deleteUser() {}
-
-    getUserByEmail(email: string){
+    getUserByEmail(email: string) {
         return this.get('users/' + email);
     }
 
-    getUserById(id: Number){
+    getUserById(id: Number) {
       return this.get('users/id/' + id);
 
+    }
+    getReportsByUser() {
+      let report = this.getUserById(this.cacheUser.id).subscribe( response => {
+            report = response.reports();
+        });
+      return report;
     }
     login(email: string, password: string) {
         return this.post('users/login', { email, password }, { credentials: false }).map(loginResponse => {
             if (loginResponse) {
-                this.cacheUser = this.getUserByEmail(email);
                 this.authService.accessToken = loginResponse.accessToken;
             }
         });

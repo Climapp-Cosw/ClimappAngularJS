@@ -1,7 +1,7 @@
 import {Report} from './report';
 
 export class User {
-    private _id: Number
+    private _id: Number;
     private _name: string;
     private _email: string;
     private _image: string;
@@ -9,13 +9,14 @@ export class User {
     private _confirmPassword: string;
     private  _reports: Report [] = [];
 
-    constructor(id: Number,name: string, email: string, image: string,  password: string, confirmPassword: string) {
+    constructor(id: Number, name: string, email: string, image: string,  password: string, confirmPassword: string) {
         this._name = name;
         this._email = email;
         this._image = image;
         this._password = password;
         this._confirmPassword = confirmPassword;
-        this._id=id;
+        this._id = id;
+
     }
 
 

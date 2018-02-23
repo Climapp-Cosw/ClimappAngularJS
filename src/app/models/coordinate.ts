@@ -1,4 +1,4 @@
-export class Coordenate{
+export class Coordinate {
     private _latituded: Number;
     private _longituded: Number;
 

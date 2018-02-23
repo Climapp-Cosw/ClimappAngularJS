@@ -82,6 +82,13 @@
     <div class="col-2">
       <button  type="submit"  class="btn btn-info btn-block btnInit center " [disabled]="!profileForm.valid" (click)="saveConfig()">Save</button>
     </div>
-    <p class="text-danger mt-1" *ngIf="profileError">{{profileError}}</p>
   </div>
+  <br>
+  <div *ngIf="isEditable()" class="row justify-content-center">
+    <div *ngIf="profileError" class="alert alert-danger alert-dismissable fade show col-6">
+      <strong>Error!</strong> {{profileError}}.
+    </div>
+  </div>
+
+
 </div>

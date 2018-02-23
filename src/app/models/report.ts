@@ -1,23 +1,21 @@
-import {Coordenate} from './coordenate';
+import {Coordinate} from './coordinate';
 import {User} from './user';
 
-export class Report{
+export class Report {
     private _dateTimeReport: Date;
-  private _latLng: Coordenate;
+  private _coordenate: Coordinate;
   private _img: string;
   private _coment: string;
   private _clima: string;
-  private _ratio: Number;
   private _user: User;
 
 
-  constructor(dateTimeReport: Date, latLng: Coordenate, img: string, coment: string, clima: string, ratio: Number, user: User) {
+  constructor(dateTimeReport: Date, latLng: Coordinate, img: string, coment: string, clima: string, user: User) {
     this._dateTimeReport = dateTimeReport;
-    this._latLng = latLng;
+    this._coordenate = latLng;
     this._img = img;
     this._coment = coment;
     this._clima = clima;
-    this._ratio = ratio;
     this._user = user;
   }
 
@@ -29,12 +27,12 @@ export class Report{
     this._dateTimeReport = value;
   }
 
-  get latLng(): Coordenate {
-    return this._latLng;
+  get coordinate(): Coordinate {
+    return this._coordenate;
   }
 
-  set latLng(value: Coordenate) {
-    this._latLng = value;
+  set coordinate(value: Coordinate) {
+    this._coordenate = value;
   }
 
   get img(): string {
@@ -61,13 +59,6 @@ export class Report{
     this._clima = value;
   }
 
-  get ratio(): Number {
-    return this._ratio;
-  }
-
-  set ratio(value: Number) {
-    this._ratio = value;
-  }
 
   get user(): User {
     return this._user;

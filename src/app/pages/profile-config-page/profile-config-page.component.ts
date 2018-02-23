@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {CacheService} from "ng2-cache/src/services/cache.service";
 
 @Component({
   selector: 'app-profile-config-page',
@@ -18,8 +17,9 @@ export class ProfileConfigPageComponent implements OnInit{
     public useremail: '';
     public userimage: '';
     public userpass: '';
-    private user;
+    private user: User;
     constructor(public userService: UserService, public formBuilder: FormBuilder, public router: Router) {
+        this.user = this.userService.cacheUser;
         this.userGet();
     }
 
@@ -44,9 +44,9 @@ export class ProfileConfigPageComponent implements OnInit{
       this.router.navigate(['/']);
     }
 
-    private userGet(){
+    private userGet() {
       this.editable = false;
-      this.userService.getUserById(this.userService.cacheUser.id()).subscribe(serverResponse => {
+      this.userService.getUserById(this.user.id).subscribe(serverResponse => {
         this.username = serverResponse.name;
         this.useremail = serverResponse.email;
         this.userimage = serverResponse.image;

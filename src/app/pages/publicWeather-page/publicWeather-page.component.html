@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form [formGroup]="publicForm" (ngSubmit)="onSubmit()" novalidate>
+    <form id="map" [formGroup]="publicWeatherForm"  novalidate>
 
         <div class="row">
             <div class="col-1">
@@ -16,7 +16,7 @@
                     <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda" >
                     <div id="idDivRegionesFavoritas" class="form-group">
                         <label for="idRegionesFavoritas">Favoritos:</label>
-                        <textarea class="form-control" rows="10" id="idRegionesFavoritas" disabled=""></textarea>
+                        <textarea class="form-control" formControlName="idRegionesFavoritas" rows="10" id="idRegionesFavoritas" disabled=""></textarea>
                     </div>
                 </div>
 
@@ -25,17 +25,17 @@
          <div class="row">
 
                 <div class="col-md-3 ">
-                   <div ><img id="imagenesclima" class="img-responsive" src="http://roxyproyect.webcindario.com/imagenes/imag.png" alt="nublado" onclick=""></div>
+                   <div ><img id="cloudy" class="img-responsive" src="http://roxyproyect.webcindario.com/imagenes/imag.png" alt="nublado" (click)="sendReport('cloudy')"></div>
 
                 </div>
                 <div class="col-md-3 ">
-                   <div ><img id="imagenesclima" class="img-responsive" src="http://laoblogger.com/images/clipart-sun-png-2.jpg" alt="soleado"></div>
+                   <div ><img id="sunny" class="img-responsive" src="http://laoblogger.com/images/clipart-sun-png-2.jpg" alt="soleado"(click)="sendReport('sunny')"></div>
                 </div>
                 <div class="col-md-3 ">
-                   <div ><img id="imagenesclima" class="img-responsive" src="http://www.cmp.vcl.cu/images/Clima/precipitaciones.png" alt="llovisnando"></div>
+                   <div ><img id="rain" class="img-responsive" src="http://www.cmp.vcl.cu/images/Clima/precipitaciones.png" alt="llovisnando" (click)="sendReport('rain')"></div>
                </div>
-             <div class="col-md-3 ">
-                   <div ><img id="imagenesclima" class="img-responsive" src="http://res.freestockphotos.biz/thumb_small/15/15141-illustration-of-a-stormy-cloud-with-lightning-ts.png" alt="tormenta"></div>
+              <div class="col-md-3 ">
+                   <div ><img id="storm" class="img-responsive" (click)="sendReport('storm')" src="http://res.freestockphotos.biz/thumb_small/15/15141-illustration-of-a-stormy-cloud-with-lightning-ts.png" alt="tormenta"></div>
                </div>
              </div>
     </form>

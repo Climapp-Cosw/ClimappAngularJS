@@ -29,8 +29,8 @@ const ROUTES = [
 {path: '', component: HomePageComponent},
 {path: 'login', component: LoginPageComponent},
 {path: 'register', component: RegisterPageComponent},
-{path: 'publicweather', component: PublicWeatherPageComponent,canActivate: [AuthService]},
-{path: 'profile', component: ProfileConfigPageComponent,canActivate: [AuthService]},
+{path: 'publicWeather', component: PublicWeatherPageComponent, canActivate: [AuthService]},
+{path: 'profile', component: ProfileConfigPageComponent, canActivate: [AuthService]},
 
 ]
 @NgModule({
