@@ -16,7 +16,7 @@
           <!-- *ngIf="isLoggedIn()" -->
             <li  class="nav-item">
               <!--Aca va el hipervinculo a zonas-->
-                <a class="nav-link" routerLinkActive="/zones" routerLink="/zones">Zones</a>
+                <a class="nav-link" *ngIf="isLoggedIn()" routerLinkActive="/zones" routerLink="/zones">Zones</a>
             </li>
         </ul>
         <ul  class="nav navbar-nav navbar-right">
