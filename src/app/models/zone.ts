@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export class Zone {
     private _name: string;
     private _number: Number;
@@ -43,17 +42,5 @@ export class Zone {
   set coordinates(value: Coordinates[]) {
     this._coordinates = value;
   }
-=======
-export class Zone{
-    private name: string;
-    private number: Number;
-    private id: Number;
-
-    constructor(name: string, number: Number, id: Number) {
-        this.name = name;
-        this.number = number;
-        this.id = id;
-    }
->>>>>>> master
 }
 
