@@ -1,26 +1,36 @@
 export class Coordinate {
-    private _latituded: Number;
-    private _longituded: Number;
+    private _id: Number;
+    private _latitude: Number;
+    private _longitude: Number;
 
 
-  constructor(latituded: Number, longituded: Number) {
-    this._latituded = latituded;
-    this._longituded = longituded;
+  constructor(latitude: Number, longitude: Number) {
+    this._latitude = latitude;
+    this._longitude = longitude;
   }
 
-  get latituded(): Number {
-    return this._latituded;
+  get latitude(): Number {
+    return this._latitude;
   }
 
-  set latituded(value: Number) {
-    this._latituded = value;
+  set latitude(value: Number) {
+    this._latitude = value;
   }
 
-  get longituded(): Number {
-    return this._longituded;
+  get longitude(): Number {
+    return this._longitude;
   }
 
-  set longituded(value: Number) {
-    this._longituded = value;
+  set longitude(value: Number) {
+    this._longitude = value;
+  }
+
+
+  get id(): Number {
+    return this._id;
+  }
+
+  set id(value: Number) {
+    this._id = value;
   }
 }

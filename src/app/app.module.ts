@@ -11,9 +11,12 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-config-page.component';
 import { PublicWeatherPageComponent } from './pages/publicWeather-page/publicWeather-page.component';
+import { ZonesPageComponent} from './pages/zones-page/zones-page.components';
 
 import { UserService } from './services/user.service';
 import { ReportService } from './services/report.service';
+import { ZoneService } from './services/zone.service';
+
 
 import { AppConfiguration } from './common/config/app-configuration.service';
 import { INITIAL_CONFIG } from './common/config/initial-config';
@@ -22,6 +25,7 @@ import { HttpModule } from '@angular/http';
 import { AppDataService } from './common/app-data.service';
 import { APIService } from './common/api.service';
 import { AuthService } from './common/auth.service';
+import {PublicationService} from './services/publication.service';
 
 
 
@@ -31,7 +35,7 @@ const ROUTES = [
 {path: 'register', component: RegisterPageComponent},
 {path: 'publicWeather', component: PublicWeatherPageComponent, canActivate: [AuthService]},
 {path: 'profile', component: ProfileConfigPageComponent, canActivate: [AuthService]},
-
+{path: 'zones', component: ZonesPageComponent, canActivate: [AuthService]},
 ]
 @NgModule({
   declarations: [
@@ -41,6 +45,7 @@ const ROUTES = [
     RegisterPageComponent,
     ProfileConfigPageComponent,
     PublicWeatherPageComponent,
+    ZonesPageComponent
 
 
   ],
@@ -63,10 +68,14 @@ const ROUTES = [
     },
     UserService,
     ReportService,
+    ZoneService,
+    PublicationService,
+    ReportService,
     AppConfiguration,
     AppDataService,
     APIService,
     AuthService,
+
 ],
   bootstrap: [AppComponent]
 })

@@ -51,6 +51,8 @@ export class ProfileConfigPageComponent implements OnInit{
         this.useremail = serverResponse.email;
         this.userimage = serverResponse.image;
         this.userpass = serverResponse.password;
+        this.userService.cacheUser= serverResponse;
+        this.user= serverResponse;
       });
     }
     saveConfig() {

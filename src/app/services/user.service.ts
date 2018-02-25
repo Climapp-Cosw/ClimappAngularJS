@@ -4,7 +4,8 @@ import { APIService } from '../common/api.service';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppConfiguration } from '../common/config/app-configuration.service';
 import { AuthService } from '../common/auth.service';
-import {User} from '../models/user';
+import { User } from '../models/user';
+import { Zone } from '../models/zone';
 
 @Injectable()
 export class UserService extends APIService {
@@ -48,6 +49,10 @@ export class UserService extends APIService {
             if (loginResponse) {
                 this.authService.accessToken = loginResponse.accessToken;
             }
+        });
+    }
+    addZone(email: String, id: Number, number: Number, name: string) {
+        return this.post('users/zones/' + email, { id, number, name }).map(loginResponse => {
         });
     }
 }

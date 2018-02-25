@@ -12,7 +12,9 @@ export class PublicationService extends APIService {
   }
 
   findPublication( report: Report) {
-    return this.post('publications/findpublucation', {report}).map( responsePublication => { } );
+    return this.post('publications/findpublication', {id: report.id, dateTimeReport: report.dateTimeReport,
+      coordinate: report.coordinate, img: report.img, comment: report.comment, weather: report.weather,
+      reportedUser: report.user, zone: report.zone} ).map( responsePublication => { } );
   }
   deleteReport() {}
 

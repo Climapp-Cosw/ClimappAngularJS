@@ -1,4 +1,5 @@
-import {Report} from './report';
+import { Report } from './report';
+import { Zone } from './zone';
 
 export class User {
     private _id: Number;
@@ -8,14 +9,16 @@ export class User {
     private _password: string;
     private _confirmPassword: string;
     private  _reports: Report [] = [];
+    private  _zones: Zone [] = [];
 
-    constructor(id: Number, name: string, email: string, image: string,  password: string, confirmPassword: string) {
+    constructor(id: Number, name: string, email: string, image: string,  password: string, confirmPassword: string, reports: Report[], zones: Zone[]) {
         this._name = name;
         this._email = email;
         this._image = image;
         this._password = password;
         this._confirmPassword = confirmPassword;
         this._id = id;
+        this._zones = zones;
 
     }
 
@@ -28,7 +31,7 @@ export class User {
       this._id = value;
     }
 
-  get name(): string {
+    get name(): string {
       return this._name;
     }
     set name(value: string) {
@@ -59,11 +62,20 @@ export class User {
       this._confirmPassword = value;
     }
 
-  get reports(): any {
-    return this._reports;
-  }
+    get reports(): any {
+     return this._reports;
+    }
 
-  set reports(value: any) {
-    this._reports = value;
-  }
+    set reports(value: any) {
+     this._reports = value;
+    }
+
+    get zones(): any {
+      return this._zones;
+    }
+
+    set zones(value: any) {
+      this._zones = value;
+    }
+
 }

@@ -1,0 +1,49 @@
+
+<div class="container-fluid" id="" >
+
+    <div class="row">
+        <div class="col-3">
+            <img width="200" height="200" class="img-responsive center" src="assets/img/logo.png" alt="Logo">
+        </div>
+        <div class="col-6">
+            <h1 id="titulo" align="center">Zones</h1>
+        </div>
+
+        <table class="table" align="CENTER">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Number</th>
+                    <th>Name</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tr *ngFor="let zone of zones">
+                <td>{{zone.number}}</td>
+                <td>{{zone.name}}</td>
+                <td><button type="button" class="btn btn-info" (click)="subscribeZone(zone.id, zone.number, zone.name, content)">Subscribe</button></td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+
+    <div class="modal-header">
+        <h4 class="modal-title">Confirmation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="jumbotron">
+            <h4 class="text-center">{{infoModal}}</h4>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

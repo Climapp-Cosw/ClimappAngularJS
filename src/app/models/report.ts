@@ -1,21 +1,24 @@
 import {Coordinate} from './coordinate';
 import {User} from './user';
+import {Zone} from './zone';
 
 export class Report {
-    private _dateTimeReport: Date;
-  private _coordenate: Coordinate;
+  private _id: Number;
+  private _dateTimeReport: Date;
+  private _coordinate: Coordinate;
   private _img: string;
-  private _coment: string;
-  private _clima: string;
+  private _comment: string;
+  private _weather: string;
   private _user: User;
+  private _zone: Zone;
 
 
-  constructor(dateTimeReport: Date, latLng: Coordinate, img: string, coment: string, clima: string, user: User) {
+  constructor(dateTimeReport: Date, latLng: Coordinate, img: string, comment: string, weather: string, user: User) {
     this._dateTimeReport = dateTimeReport;
-    this._coordenate = latLng;
+    this._coordinate = latLng;
     this._img = img;
-    this._coment = coment;
-    this._clima = clima;
+    this._comment = comment;
+    this._weather = weather;
     this._user = user;
   }
 
@@ -28,11 +31,11 @@ export class Report {
   }
 
   get coordinate(): Coordinate {
-    return this._coordenate;
+    return this._coordinate;
   }
 
   set coordinate(value: Coordinate) {
-    this._coordenate = value;
+    this._coordinate = value;
   }
 
   get img(): string {
@@ -43,22 +46,29 @@ export class Report {
     this._img = value;
   }
 
-  get coment(): string {
-    return this._coment;
+  get comment(): string {
+    return this._comment;
   }
 
-  set coment(value: string) {
-    this._coment = value;
+  set comment(value: string) {
+    this._comment = value;
   }
 
-  get clima(): string {
-    return this._clima;
+  get weather(): string {
+    return this._weather;
   }
 
-  set clima(value: string) {
-    this._clima = value;
+  set weather(value: string) {
+    this._weather = value;
   }
 
+  get id(): Number {
+    return this._id;
+  }
+
+  set id(value: Number) {
+    this._id = value;
+  }
 
   get user(): User {
     return this._user;
@@ -66,5 +76,13 @@ export class Report {
 
   set user(value: User) {
     this._user = value;
+  }
+
+  get zone(): Zone {
+    return this._zone;
+  }
+
+  set zone(value: Zone) {
+    this._zone = value;
   }
 }

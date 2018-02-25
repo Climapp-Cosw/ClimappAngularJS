@@ -5,6 +5,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppConfiguration } from '../common/config/app-configuration.service';
 import { AuthService } from '../common/auth.service';
 import {Coordinate} from '../models/coordinate';
+import {Report} from '../models/report';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ReportService extends APIService {
@@ -12,9 +14,10 @@ export class ReportService extends APIService {
         super(config, authService, http);
     }
 
-    registerReport(dateTimeReport: Date, coordinate: Coordinate, img: string, comment: string, weather: string, user: User) {
-        return this.post('reports/newreports', { dateTimeReport, coordinate, img, comment, weather }).map( responseReport => {
-        } );
+    registerReport(dateTimeReport: Date, coordinate: Coordinate, img: string, comment: string, weather: string, user: User): Observable<Report> {
+        return this.post('reports/newreport/' + coordinate.latitude + '&' + coordinate.longitude, {dateTimeReport: dateTimeReport,
+          coordinate: coordinate, img: img, comment: comment, weather: weather,
+          reportedUser: user} );
     }
     deleteReport() {
 

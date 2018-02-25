@@ -1,43 +1,52 @@
 <div class="container">
-
-    <form id="map" [formGroup]="publicWeatherForm"  novalidate>
-
+  <div class="row">
+    <div class="col-2">
+      <img width="200" height="200" class="img-responsive center" src="assets/img/logo.png" alt="Logo">
+    </div>
+    <div class="col">
+      <div class="col">
+            <agm-map   id="mapa" [latitude]="lat" [longitude]="long">
+              <agm-marker title="Your Position" openInfoWindow="true"
+                          inconUrl="'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'"
+                          [latitude]="lat" [longitude]="long" >
+              </agm-marker>
+            </agm-map>
+      </div>
+    </div>
+    <div class="col-3">
+      <form id="map" [formGroup]="publicWeatherForm"  novalidate>
         <div class="row">
-            <div class="col-1">
-            <img width="200" height="200" class="img-responsive center" src="http://ecofundacioncolombia.org/images/Logoo.png" alt="Logo">
+
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda" >
+            <div id="idDivRegionesFavoritas" class="form-group">
+              <label for="idRegionesFavoritas">Favoritos:</label>
+              <!--textarea class="form-control" formControlName="idRegionesFavoritas" rows="10" id="idRegionesFavoritas" disabled="true"></textarea-->
             </div>
-
-
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  col-md-offset-4">
-                    <agm-map [latitude]="lat" [longitude]="lng"></agm-map>
-                </div>
-
-                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
-                    <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda" >
-                    <div id="idDivRegionesFavoritas" class="form-group">
-                        <label for="idRegionesFavoritas">Favoritos:</label>
-                        <textarea class="form-control" formControlName="idRegionesFavoritas" rows="10" id="idRegionesFavoritas" disabled=""></textarea>
-                    </div>
-                </div>
-
+          </div>
         </div>
-        <h1 id="titulo" align="center">Publica tu clima!!</h1>
-         <div class="row">
+      </form>
+    </div>
 
-                <div class="col-md-3 ">
-                   <div ><img id="cloudy" class="img-responsive" src="http://roxyproyect.webcindario.com/imagenes/imag.png" alt="nublado" (click)="sendReport('cloudy')"></div>
 
-                </div>
-                <div class="col-md-3 ">
-                   <div ><img id="sunny" class="img-responsive" src="http://laoblogger.com/images/clipart-sun-png-2.jpg" alt="soleado"(click)="sendReport('sunny')"></div>
-                </div>
-                <div class="col-md-3 ">
-                   <div ><img id="rain" class="img-responsive" src="http://www.cmp.vcl.cu/images/Clima/precipitaciones.png" alt="llovisnando" (click)="sendReport('rain')"></div>
-               </div>
-              <div class="col-md-3 ">
-                   <div ><img id="storm" class="img-responsive" (click)="sendReport('storm')" src="http://res.freestockphotos.biz/thumb_small/15/15141-illustration-of-a-stormy-cloud-with-lightning-ts.png" alt="tormenta"></div>
-               </div>
-             </div>
-    </form>
+  </div>
+
+  <h1 id="titulo" align="center">Publica tu clima!!</h1>
+  <div onload="ngOnInit()" class="row ">
+
+    <div class="col-md-3 ">
+      <div ><img id="cloudy" class="imagenesclima"  src="assets/img/cloudy.png" alt="nublado" (click)="sendReport('cloudy')"></div>
+
+    </div>
+    <div class="col-md-3 ">
+      <div ><img id="sunny" class="imagenesclima"  src="assets/img/sunny.png" alt="soleado"(click)="sendReport('sunny')"></div>
+    </div>
+    <div class="col-md-3 ">
+      <div ><img id="rain" class="imagenesclima"  src="assets/img/rain.png" alt="llovisnando" (click)="sendReport('rain')"></div>
+    </div>
+    <div class="col-md-3 ">
+      <div ><img id="storm" class="imagenesclima" (click)="sendReport('storm')"  src="assets/img/storm.png" alt="tormenta"></div>
+    </div>
+  </div>
 </div>
 
