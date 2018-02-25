@@ -11,7 +11,7 @@ import { User } from '../../models/user';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-    public loginError : string;
+    public loginError: string;
     public signInForm: FormGroup;
     public authService: AuthService;
 
@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
     });
     }
 
-    routeToHome(){
+    routeToHome() {
         this.router.navigate(['/']);
     }
 
@@ -34,10 +34,14 @@ export class LoginPageComponent implements OnInit {
         this.usersService.login(
             this.signInForm.get('email').value,
             this.signInForm.get('password').value).subscribe(loginResponse => {
-                this.router.navigate(['/profile']);
+                this.usersService.getUserByEmail(this.signInForm.get('email').value).subscribe(response => {
+                    this.usersService.cacheUser = response;
+                    this.router.navigate(['/publicWeather']);
+                  }
+                );
         }, error => {
             this.loginError = 'Error Signing in: ' + (error && error.message ? error.message : '');
-        })
+        });
     }
 
 }

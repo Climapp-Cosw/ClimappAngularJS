@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <img width="200" height="200" class="img-responsive center" src="assets/img/logo.png" alt="Logo">
+    </div>
+    <div class="col">
+      <div class="col">
+            <agm-map   id="mapa" [latitude]="lat" [longitude]="long">
+              <agm-marker title="Your Position" openInfoWindow="true"
+                          inconUrl="'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'"
+                          [latitude]="lat" [longitude]="long" >
+              </agm-marker>
+            </agm-map>
+      </div>
+    </div>
+    <div class="col-3">
+      <form id="map" [formGroup]="publicWeatherForm"  novalidate>
+        <div class="row">
+
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda" >
+            <div id="idDivRegionesFavoritas" class="form-group">
+              <label for="idRegionesFavoritas">Favoritos:</label>
+              <!--textarea class="form-control" formControlName="idRegionesFavoritas" rows="10" id="idRegionesFavoritas" disabled="true"></textarea-->
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+
+  <h1 id="titulo" align="center">Publica tu clima!!</h1>
+  <div onload="ngOnInit()" class="row ">
+
+    <div class="col-md-3 ">
+      <div ><img id="cloudy" class="imagenesclima"  src="assets/img/cloudy.png" alt="nublado" (click)="sendReport('cloudy')"></div>
+
+    </div>
+    <div class="col-md-3 ">
+      <div ><img id="sunny" class="imagenesclima"  src="assets/img/sunny.png" alt="soleado"(click)="sendReport('sunny')"></div>
+    </div>
+    <div class="col-md-3 ">
+      <div ><img id="rain" class="imagenesclima"  src="assets/img/rain.png" alt="llovisnando" (click)="sendReport('rain')"></div>
+    </div>
+    <div class="col-md-3 ">
+      <div ><img id="storm" class="imagenesclima" (click)="sendReport('storm')"  src="assets/img/storm.png" alt="tormenta"></div>
+    </div>
+  </div>
+</div>
+

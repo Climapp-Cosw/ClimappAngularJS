@@ -1,7 +1,13 @@
 body {
-    min-height: 75rem;
+
+    min-height: 65rem;
     padding-top: 4.5rem;
     background-color: lightblue;
-    background: linear-gradient(to top, rgba(0,136,204,100), rgba(255,255,255,100)); 
+    background: linear-gradient(to top, rgba(0,136,204,100), rgba(255,255,255,100));
+  /*margin-top: 10%;
+  padding-top: 5rem;
+  background-image:url("assets/img/artaic-blue.png");
+  background-repeat: no-repeat;
+  background-size: 100%;*/
 }
 

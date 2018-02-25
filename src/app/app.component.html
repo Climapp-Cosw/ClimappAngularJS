@@ -6,17 +6,21 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <a class="navbar-brand" href="#">ClimApp</a>
+            <a class="navbar-brand"  >ClimApp</a>
             <li *ngIf="isLoggedIn()" class="nav-item">
                 <a class="nav-link" *ngIf="!isLoggedIn()" routerLinkActive="/" routerLink="/">Home</a>
             </li>
             <li  class="nav-item">
                 <a class="nav-link" *ngIf="isLoggedIn()" routerLinkActive="/profile" routerLink="/profile">Profile</a>
             </li>
-          <!-- *ngIf="isLoggedIn()" -->
-            <li  class="nav-item">
-              <!--Aca va el hipervinculo a zonas-->
-                <a class="nav-link" *ngIf="isLoggedIn()" routerLinkActive="/zones" routerLink="/zones">Zones</a>
+
+             <li  class="nav-item">
+                <a class="nav-link" *ngIf="isLoggedIn()" routerLinkActive="/publicWeather" routerLink="/publicWeather">Public Weather</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="isLoggedIn()"  routerLinkActive="/zones" routerLink="/zones">Zones</a>
+
             </li>
         </ul>
         <ul  class="nav navbar-nav navbar-right">

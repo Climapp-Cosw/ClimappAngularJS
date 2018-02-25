@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-3">
 
-      <img width="200" height="200" class="img-responsive center" src="http://ecofundacioncolombia.org/images/Logoo.png" alt="Logo">
+      <img width="200" height="200" class="img-responsive center" src="assets/img/logo.png" alt="Logo">
 
     </div>
     <div class="col-6">
@@ -16,28 +16,23 @@
 
           <div class="col justify-content-center" >
 
-            <label for="name2">Name: </label>
-            <p id="name2">{{user.name}}</p>
+            <label >Name: </label>
+            <p id="name2">{{username}}</p>
 
             <label for="email2">Email: </label>
-            <p id="email2">{{user.email}}</p>
-            <div class="row justify-content-end" >
-              <div class="col" >
-                <br>
-                <button  type="submit" class="btn btn-info btn-block btnInit  " (click)="edit()">Edit profile</button>
-              </div>
-            </div>
+            <p id="email2">{{useremail}}</p>
+
           </div>
         </div>
         <div *ngIf="isEditable()" class="row">
-          <label for="nameedit">Name: </label>
-          <input type="text" [(ngModel)]="user.name" class="form-control" id="nameedit" formControlName="nameedit" required>
+          <label for="name">Name: </label>
+          <input type="text" [(ngModel)]="username" class="form-control" id="name" formControlName="name" required>
 
-          <label for="emailedit">Email: </label>
-          <input  type="email" [(ngModel)]="user.email" class="form-control" id="emailedit" formControlName="emailedit"  required>
+          <label for="email">Email: </label>
+          <input  type="email" [(ngModel)]="useremail" class="form-control" id="email" formControlName="email"  required>
 
-          <label for="paswd">New password: </label>
-          <input   type="password" [(ngModel)]="user.password" class="form-control" id="paswd" formControlName="paswd" required>
+          <label for="password">New password: </label>
+          <input   type="password" [(ngModel)]="userpass" class="form-control" id="password" formControlName="password" required>
           <br>
 
           <!-- Image file-->
@@ -51,20 +46,49 @@
           <div-- class="col-3">
             <button  type="submit" class="btn btn-info btn-block btnInit " (click)="saveConfig()">Save</button>
           </div-->
-          <div class="col-9">
-            <label for="image" class="center label">Picture link</label>
-            <input type="text" [(ngModel)]="user.image" class="form-control textField center" id="image" formControlName="image" required>
-          </div>
-          <button  type="submit"  class="btn btn-info btn-block btnInit col-3 " (click)="saveConfig()">Save</button>
 
 
+          <label for="image" class="center label">Picture link</label>
+          <input type="text" [(ngModel)]="userimage" class="form-control textField center" id="image" formControlName="image">
         </div>
       </form>
+
+
     </div>
     <div *ngIf="!isEditable()" class="col-3">
 
-        <img class="img-responsive" width="300" height="300" id="imguser"  [src]="user.image"  alt="ProfilePicture">
+        <img class="img-responsive" width="300" height="300"   [src]="userimage"  alt="ProfilePicture">
 
     </div>
   </div>
+
+  <div class="row justify-content-center" *ngIf="!isEditable()">
+    <div class="col-2" >
+      <button type="button" class="btn btn-info btn-block btnInit" (click)="routeToHome()">Home</button>
+
+    </div>
+    <div class="col-2">
+      <button  type="submit" class="btn btn-info btn-block btnInit  " (click)="edit()">Edit profile</button>
+    </div>
+  </div>
+
+  <br>
+
+  <div *ngIf="isEditable()" class="row justify-content-center">
+    <div class="col-2">
+      <button type="button" class="btn btn-info btn-block btnInit center " (click)="routeToProfile()">Profile</button>
+    </div>
+
+    <div class="col-2">
+      <button  type="submit"  class="btn btn-info btn-block btnInit center " [disabled]="!profileForm.valid" (click)="saveConfig()">Save</button>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="isEditable()" class="row justify-content-center">
+    <div *ngIf="profileError" class="alert alert-danger alert-dismissable fade show col-6">
+      <strong>Error!</strong> {{profileError}}.
+    </div>
+  </div>
+
+
 </div>
