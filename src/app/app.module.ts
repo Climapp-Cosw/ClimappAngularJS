@@ -10,11 +10,12 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileConfigPageComponent } from './pages/profile-config-page/profile-config-page.component';
+
 import { PublicWeatherPageComponent } from './pages/publicWeather-page/publicWeather-page.component';
 import { ZonesPageComponent} from './pages/zones-page/zones-page.components';
 
-import { UserService } from './services/user.service';
 import { ReportService } from './services/report.service';
+import { UserService } from './services/user.service';
 import { ZoneService } from './services/zone.service';
 
 
@@ -47,7 +48,6 @@ const ROUTES = [
     PublicWeatherPageComponent,
     ZonesPageComponent
 
-
   ],
   imports: [
     BrowserModule,
@@ -75,7 +75,7 @@ const ROUTES = [
     AppDataService,
     APIService,
     AuthService,
-
+    ZoneService
 ],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,10 @@
-import { Router}from '@angular/router';
 import { Injectable } from '@angular/core';
 import { APIService } from '../common/api.service';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppConfiguration } from '../common/config/app-configuration.service';
 import { AuthService } from '../common/auth.service';
 import { User } from '../models/user';
-import { Zone } from '../models/zone';
+
 
 @Injectable()
 export class UserService extends APIService {
@@ -52,7 +51,7 @@ export class UserService extends APIService {
         });
     }
     addZone(email: String, id: Number, number: Number, name: string) {
-        return this.post('users/zones/' + email, { id, number, name }).map(loginResponse => {
+        return this.post('users/zones/'+ email, { id, number, name }).map(loginResponse => {
         });
     }
 }
