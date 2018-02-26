@@ -10,7 +10,6 @@ import {PublicationService} from '../../services/publication.service';
 import {Report} from '../../models/report';
 import {User} from '../../models/user';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {StompService} from '../../services/stomp.service';
 import {ZoneService} from '../../services/zone.service';
 
 @Component({
@@ -25,13 +24,13 @@ export class PublicWeatherPageComponent implements OnInit {
     private report: Report = null;
     private user: User;
     public infoModal: string;
-    public zoneSuscribe;
+    static zoneSuscribe ;
     constructor(public publicationService: PublicationService,
                 public userService: UserService, public reportService: ReportService,
                 public formBuilder: FormBuilder, public router: Router,
-                private modalService: NgbModal, public zoneService: ZoneService, private stompService: StompService) {
+                private modalService: NgbModal) {
        this.user = this.userService.cacheUser;
-       /**this.getPublicationsInit();**/
+       this.getPublicationsInit();
 
     }
     ngOnInit() {
@@ -60,11 +59,16 @@ export class PublicWeatherPageComponent implements OnInit {
          'comment', weather , this.user
       ).subscribe(response => {
           this.report = response;
-          this.infoModal = 'You registered to new report';
-          this.modalService.open(content, { windowClass: 'dark-modal' });
+          this.infoModal = 'Se ha registrado un nuevo reporte';
           this.publicationService.findPublication(this.report).subscribe( response2 => {
+            if (response2) {
+              this.infoModal += 'Se ha realizado la publicacion';
+            } else {
+              this.infoModal += 'Aun no se ha realizado la publicacion';
+            }
+            this.modalService.open(content, { windowClass: 'dark-modal' });
           }, error2 => {
-            console.log('Error publicando ' + error2);
+            console.log('Not found Publication' + error2);
           });
       }, error => {
         this.infoModal = error.message;
@@ -92,7 +96,7 @@ export class PublicWeatherPageComponent implements OnInit {
             console.log( error);
         });
     }
-    private drawCircleMap(report: Report) {
+    static drawCircleMap(report: Report) {
       /**dibujar en el mapa las cordenadas de la publicaciones, con el color del clima de cada reporte**/
       let clima = report.weather;
       let coordinate = report.coordinate;
