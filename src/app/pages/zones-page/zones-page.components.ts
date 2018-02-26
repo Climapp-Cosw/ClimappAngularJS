@@ -1,10 +1,11 @@
 import { Component , OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Zone } from '../../models/zone';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { ZoneService } from '../../services/zone.service';
 import { UserService } from '../../services/user.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal,  } from '@ng-bootstrap/ng-bootstrap';
+import {User} from '../../models/user';
+
 
 @Component({
   selector: 'app-zones-page',
@@ -14,13 +15,11 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class ZonesPageComponent implements OnInit {
     public zones: Zone[] = [];
     public infoModal: string;
+    private user: User;
     constructor (
-      public formBuilder: FormBuilder,
-      public router: Router,
-      public zoneService: ZoneService,
-      public userService: UserService,
-        private modalService: NgbModal) {
-
+      public router: Router, public zoneService: ZoneService, public userService: UserService,
+      private modalService: NgbModal) {
+        this.user = userService.cacheUser;
     }
 
     ngOnInit() {
@@ -30,7 +29,8 @@ export class ZonesPageComponent implements OnInit {
         });
     }
     subscribeZone(id: Number, number: Number, name: string, content) {
-        this.userService.addZone('prueba@mail.com', id, number, name).subscribe(serverResponse => {
+        this.userService.addZone( this.user.email, id, number, name).subscribe(serverResponse => {
+            this.zoneService.suscribeZone(number, name);
             this.infoModal = 'You have subscribed to ' + name + ' zone.';
             this.modalService.open(content, { windowClass: 'dark-modal' });
             console.log('Se ha adicionado');
@@ -42,5 +42,6 @@ export class ZonesPageComponent implements OnInit {
             console.log(error.message);
         });
     }
+
 }
 

@@ -22,7 +22,20 @@
             <div id="idDivRegionesFavoritas" class="form-group">
               <label for="idRegionesFavoritas">Favoritos:</label>
               <div id="idRegionesFavoritas">
-
+                <table class="table">
+                  <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Localidad</th>
+                    <th scope="col">Clima</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let zone of zoneSuscribe">
+                    <td>{{zone.zone}}</td>
+                    <td>{{zone.weather}}</td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

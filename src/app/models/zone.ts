@@ -1,4 +1,3 @@
-
 export class Zone {
     private _name: string;
     private _number: Number;
@@ -44,4 +43,3 @@ export class Zone {
     this._coordinates = value;
   }
 }
-

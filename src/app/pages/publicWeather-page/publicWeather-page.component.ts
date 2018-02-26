@@ -10,6 +10,8 @@ import {PublicationService} from '../../services/publication.service';
 import {Report} from '../../models/report';
 import {User} from '../../models/user';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {StompService} from '../../services/stomp.service';
+import {ZoneService} from '../../services/zone.service';
 
 @Component({
   selector: 'app-publicweather-page' ,
@@ -23,11 +25,14 @@ export class PublicWeatherPageComponent implements OnInit {
     private report: Report = null;
     private user: User;
     public infoModal: string;
+    public zoneSuscribe;
     constructor(public publicationService: PublicationService,
                 public userService: UserService, public reportService: ReportService,
                 public formBuilder: FormBuilder, public router: Router,
-                private modalService: NgbModal) {
+                private modalService: NgbModal, public zoneService: ZoneService, private stompService: StompService) {
        this.user = this.userService.cacheUser;
+       /**this.getPublicationsInit();**/
+
     }
     ngOnInit() {
       this.publicWeatherForm = this.formBuilder.group({
@@ -36,6 +41,7 @@ export class PublicWeatherPageComponent implements OnInit {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
       }
+      this.getPublicationsInit();
     }
     private setPosition(position) {
       this.lat = position.coords.latitude;
@@ -67,11 +73,18 @@ export class PublicWeatherPageComponent implements OnInit {
         console.log(error.message);
       });
     }
-    getPublications() {
+    private getPublicationsInit() {
       this.publicationService.getPublications().subscribe( response => {
               response.map(function(publication) {
                 publication.reports.map(function(report) {
+                        /*Dibujar las publicaciones en el mapa*/
                         this.drawCircleMap(report);
+                        /*Lista de zonas favoritas y clima*/
+                        this.zoneSuscribe = this.user.zones.map(function (zone) {
+                              if (report.zone.number === zone.number) {
+                                 return {weather: report.weather, zone: report.zone.name };
+                              }
+                        });
                   }
                 );
               });
@@ -79,10 +92,9 @@ export class PublicWeatherPageComponent implements OnInit {
             console.log( error);
         });
     }
-    drawCircleMap(report: Report) {
+    private drawCircleMap(report: Report) {
       /**dibujar en el mapa las cordenadas de la publicaciones, con el color del clima de cada reporte**/
       let clima = report.weather;
       let coordinate = report.coordinate;
     }
-
 }

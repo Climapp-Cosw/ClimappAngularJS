@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule} from "@agm/core";
+import {FormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -28,6 +29,12 @@ import { APIService } from './common/api.service';
 import { AuthService } from './common/auth.service';
 import {PublicationService} from './services/publication.service';
 
+import { StompService } from './services/stomp.service';
+
+
+
+
+
 
 
 const ROUTES = [
@@ -36,8 +43,10 @@ const ROUTES = [
 {path: 'register', component: RegisterPageComponent},
 {path: 'publicWeather', component: PublicWeatherPageComponent, canActivate: [AuthService]},
 {path: 'profile', component: ProfileConfigPageComponent, canActivate: [AuthService]},
-{path: 'zones', component: ZonesPageComponent, canActivate: [AuthService]},
+{path: 'zones', component: ZonesPageComponent},
 ]
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +84,7 @@ const ROUTES = [
     AppDataService,
     APIService,
     AuthService,
-    ZoneService
+    StompService
 ],
   bootstrap: [AppComponent]
 })

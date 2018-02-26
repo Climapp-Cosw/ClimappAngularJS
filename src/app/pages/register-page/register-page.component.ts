@@ -27,7 +27,7 @@ export class RegisterPageComponent implements OnInit {
         });
     }
 
-    routeToHome(){
+    routeToHome() {
         this.router.navigate(['/']);
     }
 

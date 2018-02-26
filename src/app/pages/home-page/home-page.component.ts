@@ -12,11 +12,11 @@ export class HomePageComponent implements OnInit {
     ngOnInit() {
     }
 
-    routeToSignUp(){
+    routeToSignUp() {
         this.router.navigate(['/register']);
     }
 
-    routeToSignIn(){
+    routeToSignIn() {
         this.router.navigate(['/login']);
     }
 
