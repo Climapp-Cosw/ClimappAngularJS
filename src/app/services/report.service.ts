@@ -13,11 +13,11 @@ export class ReportService extends APIService {
     constructor(public config: AppConfiguration, public http: Http, public authService: AuthService) {
         super(config, authService, http);
     }
-
-    registerReport(dateTimeReport: Date, coordinate: Coordinate, img: string, comment: string, weather: string, user: User): Observable<Report> {
+    registerReport(dateTimeReport: Date, coordinate: Coordinate, img: string, comment: string, weather: string, user: User)
+    : Observable<Report> {
         return this.post('reports/newreport/' + coordinate.latitude + '&' + coordinate.longitude, {dateTimeReport: dateTimeReport,
           coordinate: coordinate, img: img, comment: comment, weather: weather,
-          reportedUser: user} );
+          reportedUser: user, zone: null } );
     }
     deleteReport() {
 
