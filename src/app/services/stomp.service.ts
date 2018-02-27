@@ -28,7 +28,7 @@ export class StompService {
       /*FAVORIT ZONE*/
       self.stompClient.subscribe('/topic/zoneSuscribe/' + this.numberZone, function (data) {
         let data1 = JSON.parse(data.body);
-        PublicWeatherPageComponent.zoneSuscribe.add({weather: data.weather, zone: data.zones.number});
+        PublicWeatherPageComponent.zoneSuscribe.add({weather: data1.weather, zone: data1.zones.number});
       });
     });
   }
