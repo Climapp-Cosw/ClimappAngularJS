@@ -41,7 +41,7 @@ export class ProfileConfigPageComponent implements OnInit{
     }
     routeToHome () {
       this.editable = false;
-      this.router.navigate(['/']);
+      this.router.navigate(['/publicWeather']);
     }
 
     private userGet() {
