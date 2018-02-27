@@ -4,6 +4,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppConfiguration } from '../common/config/app-configuration.service';
 import { AuthService } from '../common/auth.service';
 import { User } from '../models/user';
+import { Observable } from 'rxjs/Observable';
+import { Zone } from '../models/zone';
 
 
 @Injectable()
@@ -54,4 +56,9 @@ export class UserService extends APIService {
         return this.post('users/zones/'+ email, { id, number, name }).map(loginResponse => {
         });
     }
+
+
+      listFavoriteZones(email: String): Observable<Zone[]> {
+          return this.get('zones/favorites/'+email);
+      }
 }

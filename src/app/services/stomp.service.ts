@@ -17,6 +17,7 @@ export class StompService {
 
     this.stompClient.connect({}, function(frame) {
       console.log('Connected: ' + frame);
+
       /*PUBLIC ZONE*/
       self.stompClient.subscribe('/topic/reportWeather', function (data) {
         let data1 = JSON.parse(data.body);
@@ -25,7 +26,8 @@ export class StompService {
           PublicWeatherPageComponent.drawCircleMap(report);
         });
       })
-      /*FAVORIT ZONE*/
+
+      /*FAVORITE ZONE*/
       self.stompClient.subscribe('/topic/zoneSuscribe/' + this.numberZone, function (data) {
         let data1 = JSON.parse(data.body);
         PublicWeatherPageComponent.zoneSuscribe.add({weather: data.weather, zone: data.zones.number});

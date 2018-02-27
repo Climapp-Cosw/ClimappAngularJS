@@ -33,7 +33,8 @@ export class ZonesPageComponent implements OnInit {
             this.zoneService.suscribeZone(number, name);
             this.infoModal = 'You have subscribed to ' + name + ' zone.';
             this.modalService.open(content, { windowClass: 'dark-modal' });
-            console.log('Se ha adicionado');
+            //alert('Se ha adicionado '+name+ 'a tus zonas');
+            console.log('Se ha adicionado '+name+ ' a tus zonas');
         }, error => {
 
             this.infoModal = error.message;

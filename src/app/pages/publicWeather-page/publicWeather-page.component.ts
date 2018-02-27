@@ -78,6 +78,7 @@ export class PublicWeatherPageComponent implements OnInit {
       });
     }
     private getPublicationsInit() {
+      //alert("ENTRA A LA FUNCION!!")
       this.publicationService.getPublications().subscribe( response => {
               response.map(function(publication) {
                 publication.reports.map(function(report) {
@@ -86,6 +87,8 @@ export class PublicWeatherPageComponent implements OnInit {
                         /*Lista de zonas favoritas y clima*/
                         this.zoneSuscribe = this.user.zones.map(function (zone) {
                               if (report.zone.number === zone.number) {
+                                alert({weather: report.weather, zone: report.zone.name});
+
                                  return {weather: report.weather, zone: report.zone.name };
                               }
                         });
@@ -101,4 +104,12 @@ export class PublicWeatherPageComponent implements OnInit {
       let clima = report.weather;
       let coordinate = report.coordinate;
     }
+
+    //Create the favorite zone view
+    getFavoriteZones(email : string){
+      this.userService.listFavoriteZones(email);
+      alert("Favorite zones: "+this.userService.listFavoriteZones(email));
+    }
+
+
 }

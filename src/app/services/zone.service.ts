@@ -19,9 +19,11 @@ export class ZoneService extends APIService {
       listZones(): Observable<Zone[]> {
           return this.get('zones/');
       }
+
+
       suscribeZone(id: Number, name: string) {
         this.stompService.numberZone = id;
-        this.stompService.stompClient.send('/topic/zoneSuscribe/', {}, name );
+
       }
   }
 

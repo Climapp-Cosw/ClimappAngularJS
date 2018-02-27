@@ -20,13 +20,16 @@
           <div class="col">
             <input type="text" class="form-control" placeholder="Search" id="idTxtBusqueda" >
             <div id="idDivRegionesFavoritas" class="form-group">
-              <label for="idRegionesFavoritas">Favoritos:</label>
+              <label for="idRegionesFavoritas">Favorites:</label>
               <div id="idRegionesFavoritas">
                 <table class="table">
                   <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Localidad</th>
-                    <th scope="col">Clima</th>
+                    <th scope="col">Zone</th>
+                    <th scope="col">Current Weather</th>
+                    <th>
+                      <input type="button" value="show" ng-click="getPublicationsInit()">
+                    </th>
                   </tr>
                   </thead>
                   <tbody>
