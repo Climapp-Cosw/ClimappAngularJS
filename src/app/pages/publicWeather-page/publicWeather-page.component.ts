@@ -90,7 +90,7 @@ export class PublicWeatherPageComponent implements OnInit {
                 this.circle = publication.reports.map(function(report) {
                         /*Dibujar las publicaciones en el mapa*/
                         /*Lista de zonas favoritas y clima*/
-                        PublicWeatherPageComponent.add({weather: report.weather, zone: report.zone.name });
+                        /*PublicWeatherPageComponent.add({weather: report.weather, zone: report.zone.name });*/
                         return {latit: report.coordinate.latitude, longit: report.coordinate.longitude, color: 'red'};
                         /*this.userService.getUserById(this.user.id).subscribe( response2 => {
                             response2.zones.map(function (zone: Zone) {

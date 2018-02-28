@@ -29,9 +29,12 @@ export class StompService {
         });
       })
       /*FAVORIT ZONE*/
-      self.stompClient.subscribe('/topic/zoneSuscribe/' + this.numberZone, function (data: Publication) {
-        PublicWeatherPageComponent.add({weather: data.reports[1].weather, zone: data.zone.number});
-      });
+      self.stompClient.subscribe('/topic/zoneSuscribe/' + this.numberZone, function (data) {
+        let data1: Publication;
+        data1 = JSON.parse(data.body);
+        PublicWeatherPageComponent.add({weather: data1.reports[1].weather, zone: data1.zone.number});
+      }
+      );
     });
   }
 }
