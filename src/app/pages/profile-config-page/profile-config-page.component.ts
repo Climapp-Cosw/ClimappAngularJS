@@ -13,10 +13,10 @@ export class ProfileConfigPageComponent implements OnInit{
     public editable: boolean;
     public profileForm: FormGroup;
     public profileError: string;
-    public username: '';
-    public useremail: '';
-    public userimage: '';
-    public userpass: '';
+    public username: string;
+    public useremail: string;
+    public userimage: string;
+    public userpass: string;
     private user: User;
     constructor(public userService: UserService, public formBuilder: FormBuilder, public router: Router) {
         this.user = this.userService.cacheUser;
@@ -41,7 +41,7 @@ export class ProfileConfigPageComponent implements OnInit{
     }
     routeToHome () {
       this.editable = false;
-      this.router.navigate(['/']);
+      this.router.navigate(['/publicWeather']);
     }
 
     private userGet() {

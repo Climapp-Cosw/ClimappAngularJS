@@ -4,6 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { AppConfiguration } from '../common/config/app-configuration.service';
 import { AuthService } from '../common/auth.service';
 import { User } from '../models/user';
+import {Observable, ObservableInput} from 'rxjs/Observable';
 
 
 @Injectable()
@@ -33,7 +34,7 @@ export class UserService extends APIService {
         return this.get('users/' + email);
     }
 
-    getUserById(id: Number) {
+    getUserById(id: Number): Observable<User> {
       return this.get('users/id/' + id);
 
     }
@@ -51,7 +52,7 @@ export class UserService extends APIService {
         });
     }
     addZone(email: String, id: Number, number: Number, name: string) {
-        return this.post('users/zones/'+ email, { id, number, name }).map(loginResponse => {
+        return this.post('users/zones/' + email, { id, number, name }).map(loginResponse => {
         });
     }
 }
