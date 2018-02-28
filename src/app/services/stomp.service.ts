@@ -9,7 +9,7 @@ import {Publication} from '../models/publication';
 export class StompService {
   public stompClient;
   public numberZone: Number;
-  //private data2: Publication;
+  public example = [];
   constructor() {
   }
   connectSTOMP() {
@@ -36,9 +36,11 @@ export class StompService {
       self.stompClient.subscribe('/topic/zoneSuscribe/' + this.numberZone, function (data) {
         let data1: Publication;
         data1 = JSON.parse(data.body);
+        console.log("stomp "+ data1.zone.name);
         PublicWeatherPageComponent.add({weather: data1.reports[1].weather, zone: data1.zone.number});
-      }
-      );
+        this.example.push({idzone: data1.zone.number,climas: [data1.reports[1].weather]});
+
+      });
     });
   }
 }

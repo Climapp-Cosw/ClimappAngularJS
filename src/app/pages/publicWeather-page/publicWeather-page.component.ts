@@ -36,17 +36,16 @@ export class PublicWeatherPageComponent implements OnInit {
                 public formBuilder: FormBuilder, public router: Router,
                 private modalService: NgbModal) {
       this.user = this.userService.cacheUser;
+      this.getPublicationsInit();
     }
     ngOnInit() {
-      this.getPublicationsInit();
-      this.Draw();
+
       this.publicWeatherForm = this.formBuilder.group({
         idRegionesFavoritas : '',
       });
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
       }
-      this.getPublicationsInit();
     }
     private setPosition(position) {
       this.lat = position.coords.latitude;
@@ -88,20 +87,15 @@ export class PublicWeatherPageComponent implements OnInit {
       this.publicationService.getPublications().subscribe( response => {
               response.map(function(publication) {
                 /*PublicWeatherPageComponent.drawCircleMap(publication.reports);*/
+                this.userService.getUserById(this.user.id).subscribe( response =>  {
+                      response.zones.map(function (z: Zone) {
+                          if( z.number === publication.reports[1].zone.number){
+                            PublicWeatherPageComponent.add({weather: 'assets/img/' + publication.reports[1].weather + '.png', zone: publication.reports[1].zone.name  });
+                          }
+                      })
+                });
                 this.circle = publication.reports.map(function(report) {
-                        /*Dibujar las publicaciones en el mapa*/
-                        /*Lista de zonas favoritas y clima*/
-                        /*PublicWeatherPageComponent.add({weather: report.weather, zone: report.zone.name });*/
                         return {latit: report.coordinate.latitude, longit: report.coordinate.longitude, color: 'red'};
-                        /*this.userService.getUserById(this.user.id).subscribe( response2 => {
-                            response2.zones.map(function (zone: Zone) {
-                              if (report.zone.number === zone.number) {
-                                alert({weather: report.weather, zone: report.zone.name});
-                                 return {weather: report.weather, zone: report.zone.name };
-                                PublicWeatherPageComponent.add({weather: report.weather, zone: report.zone.name });
-                              }
-                            });
-                        });*/
                   }
                 );
               });
@@ -145,21 +139,6 @@ export class PublicWeatherPageComponent implements OnInit {
 
     set zoneSuscribe(value: any[]) {
       PublicWeatherPageComponent._zoneSuscribe = value;
-    }
-
-  Draw() {
-      this.publicationService.getPublications().subscribe( response => {
-        response.map(function(publication) {
-          publication.reports.map(function(report) {
-            report.comment = 'red';
-            this.circles.push(report);
-
-            }
-          );
-        });
-      }, error => {
-        console.log( error);
-      });
     }
 
     //Create the favorite zone view
