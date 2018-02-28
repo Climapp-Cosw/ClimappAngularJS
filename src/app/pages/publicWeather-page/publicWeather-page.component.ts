@@ -87,13 +87,14 @@ export class PublicWeatherPageComponent implements OnInit {
       this.publicationService.getPublications().subscribe( response => {
               response.map(function(publication) {
                 /*PublicWeatherPageComponent.drawCircleMap(publication.reports);*/
-                this.userService.getUserById(this.user.id).subscribe( response =>  {
+                PublicWeatherPageComponent.add({weather: 'assets/img/' + publication.reports[1].weather + '.png', zone: publication.reports[1].zone.name  });
+                /*this.userService.getUserById(this.user.id).subscribe( response =>  {
                       response.zones.map(function (z: Zone) {
                           if( z.number === publication.reports[1].zone.number){
                             PublicWeatherPageComponent.add({weather: 'assets/img/' + publication.reports[1].weather + '.png', zone: publication.reports[1].zone.name  });
                           }
                       })
-                });
+                });*/
                 this.circle = publication.reports.map(function(report) {
                         return {latit: report.coordinate.latitude, longit: report.coordinate.longitude, color: 'red'};
                   }
