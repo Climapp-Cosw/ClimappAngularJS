@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 import { PublicWeatherPageComponent } from './../pages/publicWeather-page/publicWeather-page.component';
+import {Observable} from 'rxjs/Observable';
 import {Publication} from '../models/publication';
 
 @Injectable()
@@ -23,25 +24,21 @@ export class StompService {
       /*PUBLIC ZONE*/
       self.stompClient.subscribe('/topic/reportWeather', function (data) {
 
-
-         let data2 = data.body;
-          console.log(data.body);
-
-        /*Dibujar la nueva publicacion*/
-
-        //this.data2.reports.map(function (report) {
-        data2.map(function (report) {
-          //PublicWeatherPageComponent.drawCircleMap(report);
-          alert("ENTRE!!");
+          /*Dibujar la nueva publicacion*/
+          let lat: Publication;
+          lat = JSON.parse(data.body);
+          lat.reports.map(function (report) {
+            PublicWeatherPageComponent.drawCircleMap(report);
         });
       })
 
       /*FAVORITE ZONE*/
       self.stompClient.subscribe('/topic/zoneSuscribe/' + this.numberZone, function (data) {
-        let data1 = JSON.parse(data.body);
-        PublicWeatherPageComponent.zoneSuscribe.add({weather: data1.weather, zone: data1.zones.number});
-        alert("SUSCRITO A LA ZONA");
-      });
+        let data1: Publication;
+        data1 = JSON.parse(data.body);
+        PublicWeatherPageComponent.add({weather: data1.reports[1].weather, zone: data1.zone.number});
+      }
+      );
     });
   }
 }

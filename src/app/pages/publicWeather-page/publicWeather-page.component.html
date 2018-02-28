@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" onload="ngOnInit()">
     <div class="col-2">
       <img width="200" height="200" class="img-responsive center" src="assets/img/logo.png" alt="Logo">
     </div>
@@ -10,7 +10,12 @@
                           inconUrl="'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'"
                           [(latitude)]="lat" [(longitude)]="long" >
               </agm-marker>
+              <agm-circle  onload="Draw()" *ngFor="let circle of circles" [(latitude)]="circle.coordinate.latitude" [(longitude)]="circle.coordinate.longitude" [(fillColor)]="circle.comment" [radius]="500" >
+              </agm-circle>
+              <!--agm-circle [latitude]="lat_circle" [longitude]="long_circle" [fillColor]="weather_color" [radius]="500" >
+              </agm-circle-->
             </agm-map>
+            <!--button type="button" (click)="Draw()">Load Map</button-->
       </div>
     </div>
     <div class="col-3">
@@ -50,7 +55,7 @@
   </div>
 
   <h1 id="titulo" align="center">Publica tu clima!!</h1>
-  <div onload="ngOnInit()" class="row ">
+  <div  class="row ">
 
     <div class="col-md-3 ">
       <div ><img id="cloudy" class="imagenesclima"  src="assets/img/cloudy.png" alt="nublado" (click)="sendReport('cloudy', content)"></div>

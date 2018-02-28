@@ -12,11 +12,11 @@ export class PublicationService extends APIService {
   constructor(public config: AppConfiguration, public http: Http, public authService: AuthService) {
     super(config, authService, http);
   }
-  findPublication( report: Report) {
+  findPublication( report: Report): Observable<boolean>  {
     return this.post('publications/findpublication',
       {id: report.id, dateTimeReport: report.dateTimeReport,
       coordinate: report.coordinate, img: report.img, comment: report.comment, weather: report.weather,
-      reportedUser: report.user, zone: report.zone} ).map( responsePublication => { } );
+      reportedUser: report.user, zone: report.zone} );
   }
   deleteReport() {}
 

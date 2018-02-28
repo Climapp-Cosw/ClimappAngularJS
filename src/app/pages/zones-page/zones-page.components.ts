@@ -19,11 +19,10 @@ export class ZonesPageComponent implements OnInit {
     constructor (
       public router: Router, public zoneService: ZoneService, public userService: UserService,
       private modalService: NgbModal) {
-        this.user = userService.cacheUser;
+
     }
-
     ngOnInit() {
-
+        this.user = this.userService.cacheUser;
         this.zoneService.listZones().subscribe(zonesResponse => {
             this.zones = zonesResponse;
         });
@@ -31,6 +30,9 @@ export class ZonesPageComponent implements OnInit {
     subscribeZone(id: Number, number: Number, name: string, content) {
         this.userService.addZone( this.user.email, id, number, name).subscribe(serverResponse => {
             this.zoneService.suscribeZone(number, name);
+            this.userService.getUserById(this.user.id).subscribe( serverResponse2 =>
+              this.userService.cacheUser = serverResponse2
+            );
             this.infoModal = 'You have subscribed to ' + name + ' zone.';
             this.modalService.open(content, { windowClass: 'dark-modal' });
             //alert('Se ha adicionado '+name+ 'a tus zonas');

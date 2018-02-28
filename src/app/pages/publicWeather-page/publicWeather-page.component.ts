@@ -1,3 +1,4 @@
+///<reference path="../../models/report.ts"/>
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -11,6 +12,7 @@ import {Report} from '../../models/report';
 import {User} from '../../models/user';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ZoneService} from '../../services/zone.service';
+import {Zone} from '../../models/zone';
 
 @Component({
   selector: 'app-publicweather-page' ,
@@ -21,19 +23,23 @@ export class PublicWeatherPageComponent implements OnInit {
     public publicWeatherForm: FormGroup;
     public lat: Number = 4.748638;
     public long: Number = -74.030353;
+    private static _zoneSuscribe = [] ;
+    private static _lat_circle: Number;
+    private static _long_circle: Number;
+    private static _weather_color;
+    public circles: Report[] = [];
     private report: Report = null;
     private user: User;
     public infoModal: string;
-    static zoneSuscribe ;
     constructor(public publicationService: PublicationService,
                 public userService: UserService, public reportService: ReportService,
                 public formBuilder: FormBuilder, public router: Router,
                 private modalService: NgbModal) {
-       this.user = this.userService.cacheUser;
-       this.getPublicationsInit();
-
+      this.user = this.userService.cacheUser;
     }
     ngOnInit() {
+      this.getPublicationsInit();
+      this.Draw();
       this.publicWeatherForm = this.formBuilder.group({
         idRegionesFavoritas : '',
       });
@@ -46,7 +52,7 @@ export class PublicWeatherPageComponent implements OnInit {
       this.lat = position.coords.latitude;
       this.long = position.coords.longitude;
       console.log(position.coords);
-}
+    }
     routeToHome() {
         this.router.navigate(['/']);
     }
@@ -59,16 +65,16 @@ export class PublicWeatherPageComponent implements OnInit {
          'comment', weather , this.user
       ).subscribe(response => {
           this.report = response;
-          this.infoModal = 'Se ha registrado un nuevo reporte';
+          this.infoModal = 'A new report has been registered ';
           this.publicationService.findPublication(this.report).subscribe( response2 => {
-            if (response2) {
-              this.infoModal += 'Se ha realizado la publicacion';
+            if (response2 === true) {
+              this.infoModal += 'The publication is been made ';
             } else {
-              this.infoModal += 'Aun no se ha realizado la publicacion';
+              this.infoModal += 'The publication hasnt been made ';
             }
             this.modalService.open(content, { windowClass: 'dark-modal' });
           }, error2 => {
-            console.log('Not found Publication' + error2);
+            console.log('Publication not found' + error2);
           });
       }, error => {
         this.infoModal = error.message;
@@ -81,17 +87,21 @@ export class PublicWeatherPageComponent implements OnInit {
       //alert("ENTRA A LA FUNCION!!")
       this.publicationService.getPublications().subscribe( response => {
               response.map(function(publication) {
-                publication.reports.map(function(report) {
+                /*PublicWeatherPageComponent.drawCircleMap(publication.reports);*/
+                this.circle = publication.reports.map(function(report) {
                         /*Dibujar las publicaciones en el mapa*/
-                        this.drawCircleMap(report);
                         /*Lista de zonas favoritas y clima*/
-                        this.zoneSuscribe = this.user.zones.map(function (zone) {
+                        /*PublicWeatherPageComponent.add({weather: report.weather, zone: report.zone.name });*/
+                        return {latit: report.coordinate.latitude, longit: report.coordinate.longitude, color: 'red'};
+                        /*this.userService.getUserById(this.user.id).subscribe( response2 => {
+                            response2.zones.map(function (zone: Zone) {
                               if (report.zone.number === zone.number) {
                                 alert({weather: report.weather, zone: report.zone.name});
-
                                  return {weather: report.weather, zone: report.zone.name };
+                                PublicWeatherPageComponent.add({weather: report.weather, zone: report.zone.name });
                               }
-                        });
+                            });
+                        });*/
                   }
                 );
               });
@@ -101,8 +111,55 @@ export class PublicWeatherPageComponent implements OnInit {
     }
     static drawCircleMap(report: Report) {
       /**dibujar en el mapa las cordenadas de la publicaciones, con el color del clima de cada reporte**/
-      let clima = report.weather;
-      let coordinate = report.coordinate;
+      this._weather_color = 'red';
+      this._lat_circle = report.coordinate.latitude;
+      this._long_circle = report.coordinate.longitude;
+    }
+
+    static add(data) {
+      this._zoneSuscribe.push(data);
+
+    }
+    get lat_circle(): Number {
+      return PublicWeatherPageComponent._lat_circle;
+    }
+    set lat_circle(value: Number) {
+      PublicWeatherPageComponent._lat_circle = value;
+    }
+    get long_circle(): Number {
+      return PublicWeatherPageComponent._long_circle;
+    }
+    set long_circle(value: Number) {
+      PublicWeatherPageComponent._long_circle = value;
+    }
+    get weather_color() {
+      return PublicWeatherPageComponent._weather_color;
+    }
+    set weather_color(value) {
+      PublicWeatherPageComponent._weather_color = value;
+    }
+
+    get zoneSuscribe(): any[] {
+      return PublicWeatherPageComponent._zoneSuscribe;
+    }
+
+    set zoneSuscribe(value: any[]) {
+      PublicWeatherPageComponent._zoneSuscribe = value;
+    }
+
+  Draw() {
+      this.publicationService.getPublications().subscribe( response => {
+        response.map(function(publication) {
+          publication.reports.map(function(report) {
+            report.comment = 'red';
+            this.circles.push(report);
+
+            }
+          );
+        });
+      }, error => {
+        console.log( error);
+      });
     }
 
     //Create the favorite zone view
