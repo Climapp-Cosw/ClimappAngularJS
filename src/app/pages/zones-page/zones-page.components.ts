@@ -15,6 +15,7 @@ import {User} from '../../models/user';
 export class ZonesPageComponent implements OnInit {
     public zones: Zone[] = [];
     public infoModal: string;
+    public Fzones: Zone[] = [];
     private user: User;
     constructor (
       public router: Router, public zoneService: ZoneService, public userService: UserService,
@@ -23,6 +24,9 @@ export class ZonesPageComponent implements OnInit {
     }
     ngOnInit() {
         this.user = this.userService.cacheUser;
+        this.userService.listFavoriteZones(this.userService.cacheUser.email).subscribe(favoriteZones => {
+            this.Fzones = favoriteZones;
+        });
         this.zoneService.listZones().subscribe(zonesResponse => {
             this.zones = zonesResponse;
         });
@@ -37,6 +41,7 @@ export class ZonesPageComponent implements OnInit {
             this.modalService.open(content, { windowClass: 'dark-modal' });
             //alert('Se ha adicionado '+name+ 'a tus zonas');
             console.log('Se ha adicionado '+name+ ' a tus zonas');
+            this.Fzones = serverResponse;
         }, error => {
 
             this.infoModal = error.message;
@@ -45,6 +50,18 @@ export class ZonesPageComponent implements OnInit {
             console.log(error.message);
         });
     }
+
+    unsubscribeZone(id: Number, number: Number, name: string, content) {
+      this.userService.deleteZone(this.userService.cacheUser.email,id,number,name).subscribe(favoriteZones => {
+            this.Fzones = favoriteZones;
+        });
+      console.log('Se ha eliminado '+name+ ' de tus zonas');
+      this.infoModal = 'You have unsubscribed to ' + name + ' zone.';
+      this.modalService.open(content, { windowClass: 'dark-modal' });
+    }
+
+
+
 
 }
 

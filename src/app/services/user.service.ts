@@ -54,9 +54,15 @@ export class UserService extends APIService {
     }
     addZone(email: String, id: Number, number: Number, name: string) {
         return this.post('users/zones/' + email, { id, number, name }).map(loginResponse => {
+          return loginResponse;
         });
     }
 
+    deleteZone(email: String, id: Number, number: Number, name: string){
+        return this.post('zones/deletedFavorites/'+email, { id, number, name }).map(loginResponse => {
+          return loginResponse;
+        });
+    }
 
       listFavoriteZones(email: String): Observable<Zone[]> {
           return this.get('zones/favorites/'+email);

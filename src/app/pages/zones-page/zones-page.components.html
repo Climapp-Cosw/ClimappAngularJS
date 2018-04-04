@@ -6,8 +6,25 @@
 
             <img width="200" height="200" class="img-responsive center" src="assets/img/logo.png" alt="Logo">
         </div>
+      <div class="col-6">
+        <h1 id="titulo" align="center">Zones</h1>
+      </div>
+      <table class="table" align="CENTER">
+        <thead class="thead-dark">
+        <tr>
+          <th>Name</th>
+          <th></th>
+
+        </tr>
+        </thead>
+        <tr *ngFor="let Fzone of Fzones">
+          <td>{{Fzone.name}}</td>
+          <td><button type="button" class="btn btn-info" (click)="unsubscribeZone(Fzone.id, Fzone.number, Fzone.name, content)">Unsubscribe</button></td>
+        </tr>
+      </table>
+
         <div class="col-6">
-            <h1 id="titulo" align="center">Zones</h1>
+            <h1 id="titulo" align="center">Zones to Subscribe</h1>
         </div>
 
         <table class="table" align="CENTER">
